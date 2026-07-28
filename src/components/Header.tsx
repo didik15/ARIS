@@ -3,18 +3,16 @@ import {
   FileText, 
   Users, 
   BellRing, 
-  Bot, 
   BookOpen, 
   Database, 
   Plus, 
-  Sparkles,
   ShieldAlert,
   Building2
 } from 'lucide-react';
 
 interface HeaderProps {
-  activeTab: 'dashboard' | 'documents' | 'clients' | 'services' | 'ai-assistant' | 'backup';
-  setActiveTab: (tab: 'dashboard' | 'documents' | 'clients' | 'services' | 'ai-assistant' | 'backup') => void;
+  activeTab: 'dashboard' | 'documents' | 'clients' | 'services' | 'backup';
+  setActiveTab: (tab: 'dashboard' | 'documents' | 'clients' | 'services' | 'backup') => void;
   criticalCount: number;
   expiredCount: number;
   warningCount: number;
@@ -144,21 +142,6 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <BookOpen className="w-4 h-4 text-blue-600" />
             <span>Service Catalog</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('ai-assistant')}
-            className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-xs md:text-sm font-medium whitespace-nowrap transition-colors ${
-              activeTab === 'ai-assistant'
-                ? 'bg-purple-50 text-purple-700 border border-purple-200 font-bold shadow-2xs'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-            }`}
-          >
-            <Bot className="w-4 h-4 text-purple-600" />
-            <span>A.R.I.S. AI Assistant</span>
-            <span className="px-1.5 py-0.5 text-[10px] font-semibold bg-purple-100 text-purple-800 rounded">
-              Gemini AI
-            </span>
           </button>
 
           <button

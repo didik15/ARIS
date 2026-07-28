@@ -7,12 +7,8 @@ import {
   Send, 
   Copy, 
   Check, 
-  Sparkles, 
-  Globe, 
-  FileText, 
   MessageSquare, 
-  Smartphone,
-  CheckCircle2,
+  Mail,
   AlertCircle
 } from 'lucide-react';
 
@@ -34,13 +30,11 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
 
   const [selectedTemplateId, setSelectedTemplateId] = useState<string>('tpl-01');
   const [messageText, setMessageText] = useState<string>('');
+  const [emailSubject, setEmailSubject] = useState<string>(
+    `[Immigration Expiry Notice] ${document.docType} (${document.docNumber}) - ${document.clientName}`
+  );
   const [copied, setCopied] = useState(false);
   const [agencyPhone, setAgencyPhone] = useState('0812-3456-7890');
-  
-  // AI Custom generation state
-  const [aiLanguage, setAiLanguage] = useState<'Indonesia' | 'English' | 'Japanese' | 'Mandarin'>('Indonesia');
-  const [isGeneratingAi, setIsGeneratingAi] = useState(false);
-  const [aiError, setAiError] = useState<string | null>(null);
 
   // Helper to compile template
   const compileTemplate = (templateContent: string) => {
@@ -87,39 +81,19 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
     window.open(waUrl, '_blank');
   };
 
-  // AI Generation Handler using Express backend
-  const handleGenerateAiReminder = async () => {
-    setIsGeneratingAi(true);
-    setAiError(null);
-
-    try {
-      const res = await fetch('/api/ai/generate-reminder', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          clientName: document.clientName,
-          docType: document.docType,
-          docNumber: document.docNumber,
-          expiryDate: formattedExpiry,
-          daysLeft: daysLeft,
-          language: aiLanguage,
-          channel: 'WhatsApp',
-        }),
-      });
-
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || 'Gagal menghasilkan teks AI');
-      }
-
-      if (data.reminderText) {
-        setMessageText(data.reminderText);
-      }
-    } catch (err: any) {
-      setAiError(err.message || 'Error AI API');
-    } finally {
-      setIsGeneratingAi(false);
+  // Generate Email Direct Link
+  const handleOpenEmail = () => {
+    if (!document.clientEmail) {
+      alert('Client email address is not recorded for this document.');
+      return;
     }
+    const subject = encodeURIComponent(emailSubject);
+    const body = encodeURIComponent(messageText);
+    const mailtoUrl = `mailto:${document.clientEmail}?subject=${subject}&body=${body}`;
+
+    // Log reminder sent
+    onMarkReminderSent(document.id);
+    window.open(mailtoUrl, '_blank');
   };
 
   return (
@@ -129,12 +103,13 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
         {/* Header */}
         <div className="bg-slate-900 text-white p-5 border-b border-slate-800 flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="p-2 bg-emerald-500/20 text-emerald-400 rounded-xl">
-              <MessageSquare className="w-5 h-5" />
+            <div className="p-2 bg-blue-500/20 text-blue-400 rounded-xl flex items-center space-x-1">
+              <MessageSquare className="w-5 h-5 text-emerald-400" />
+              <Mail className="w-5 h-5 text-blue-400" />
             </div>
             <div>
               <h3 className="font-bold text-base text-white">
-                Send Expiry Reminder — A.R.I.S.
+                Send Expiry Reminder — WhatsApp & Email
               </h3>
               <p className="text-xs text-slate-400">
                 Client: <strong className="text-white">{document.clientName}</strong> ({document.docType})
@@ -153,10 +128,10 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
         {/* Modal Body */}
         <div className="p-6 space-y-5 max-h-[80vh] overflow-y-auto">
           
-          {/* Document Summary Badge */}
+          {/* Document & Client Contacts Badge */}
           <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
             <div>
-              <span className="text-slate-500 block">Type & Document Number</span>
+              <span className="text-slate-500 block">Type & Number</span>
               <span className="font-bold text-slate-900 text-sm">{document.docType} ({document.docNumber})</span>
             </div>
 
@@ -180,9 +155,15 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
               </span>
             </div>
 
-            <div>
-              <span className="text-slate-500 block">Client WhatsApp Number</span>
-              <span className="font-bold text-emerald-600">{document.clientPhone}</span>
+            <div className="space-y-0.5">
+              <div className="text-slate-500 flex items-center space-x-1">
+                <span>WhatsApp:</span>
+                <strong className="text-emerald-600 font-bold">{document.clientPhone}</strong>
+              </div>
+              <div className="text-slate-500 flex items-center space-x-1">
+                <span>Email:</span>
+                <strong className="text-blue-600 font-bold">{document.clientEmail || 'Not Recorded'}</strong>
+              </div>
             </div>
           </div>
 
@@ -209,44 +190,19 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
             </div>
           </div>
 
-          {/* AI Generator Option */}
-          <div className="bg-gradient-to-r from-purple-50 via-indigo-50 to-purple-50 dark:from-purple-950/30 dark:via-indigo-950/30 dark:to-purple-950/30 p-3.5 rounded-xl border border-purple-200 dark:border-purple-800/50 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div className="flex items-center space-x-2">
-              <Sparkles className="w-4 h-4 text-purple-600 dark:text-purple-400 shrink-0" />
-              <span className="text-xs font-semibold text-purple-900 dark:text-purple-200">
-                Draft Message Automatically with Gemini AI
-              </span>
-            </div>
-
-            <div className="flex items-center space-x-2 w-full sm:w-auto">
-              <select
-                value={aiLanguage}
-                onChange={(e: any) => setAiLanguage(e.target.value)}
-                className="py-1 px-2 text-xs bg-white dark:bg-slate-800 border border-purple-300 dark:border-purple-700 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-500"
-              >
-                <option value="English">English</option>
-                <option value="Indonesia">Indonesian</option>
-                <option value="Japanese">Japanese</option>
-                <option value="Mandarin">Mandarin</option>
-              </select>
-
-              <button
-                onClick={handleGenerateAiReminder}
-                disabled={isGeneratingAi}
-                className="px-3 py-1 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-xs font-semibold shadow transition-all flex items-center space-x-1 whitespace-nowrap disabled:opacity-50"
-              >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>{isGeneratingAi ? 'Drafting...' : 'Generate AI'}</span>
-              </button>
-            </div>
+          {/* Email Subject Line (Optional for Email mode) */}
+          <div className="space-y-1">
+            <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block">
+              Email Subject Line:
+            </label>
+            <input
+              type="text"
+              value={emailSubject}
+              onChange={(e) => setEmailSubject(e.target.value)}
+              className="w-full px-3 py-2 text-xs bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100"
+              placeholder="Subject for email notification..."
+            />
           </div>
-
-          {aiError && (
-            <div className="p-2.5 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-lg flex items-center space-x-2">
-              <AlertCircle className="w-4 h-4 text-rose-500 shrink-0" />
-              <span>{aiError}</span>
-            </div>
-          )}
 
           {/* Text Editor Box */}
           <div className="space-y-1.5">
@@ -279,23 +235,33 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
             Last sent: {document.lastReminderDate || 'Never'} ({document.reminderSentCount}x)
           </div>
 
-          <div className="flex items-center space-x-3 w-full sm:w-auto">
+          <div className="flex flex-wrap items-center justify-end gap-2 w-full sm:w-auto">
             <button
               onClick={() => {
                 onMarkReminderSent(document.id);
                 alert(`Document status for ${document.clientName} updated: Reminder logged as sent!`);
               }}
-              className="px-3.5 py-2 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 text-slate-800 dark:text-slate-200 text-xs font-semibold transition-colors"
+              className="px-3 py-2 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 text-slate-800 dark:text-slate-200 text-xs font-semibold transition-colors"
             >
               Mark as Sent
             </button>
 
             <button
+              onClick={handleOpenEmail}
+              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md shadow-blue-600/20 flex items-center justify-center space-x-1.5 transition-all"
+              title={`Send to ${document.clientEmail || 'Email'}`}
+            >
+              <Mail className="w-4 h-4" />
+              <span>Send via Email</span>
+            </button>
+
+            <button
               onClick={handleOpenWhatsApp}
-              className="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 flex items-center justify-center space-x-2 transition-all w-full sm:w-auto"
+              className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md shadow-emerald-600/20 flex items-center justify-center space-x-1.5 transition-all"
+              title={`Send to ${document.clientPhone}`}
             >
               <Send className="w-4 h-4" />
-              <span>Open & Send via WhatsApp</span>
+              <span>Send via WhatsApp</span>
             </button>
           </div>
         </div>
