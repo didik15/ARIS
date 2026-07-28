@@ -1,0 +1,6 @@
+{
+  "name": "Application Reminding Integrated System (A.R.I.S.)",
+  "description": "Sistem Integrasi Pencatatan & Pengingat Masa Berlaku Paspor, KITAS, KITAP, VOA & Dokumen Keimigrasian Client Biro Jasa",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
