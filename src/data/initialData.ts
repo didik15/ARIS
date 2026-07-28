@@ -5,14 +5,14 @@ export const INITIAL_CLIENTS: Client[] = [
   {
     id: 'cli-001',
     name: 'Alexander Volkov',
-    nationality: 'Rusia',
+    nationality: 'Russia',
     passportNo: '75N982412',
     clientType: 'Expat',
     companyName: 'PT Bali Digital Investama',
     phone: '6281234567890',
     email: 'a.volkov@balidigital.id',
-    address: 'Jl. Sunset Road No. 88, Seminyak, Bali',
-    notes: 'Pemegang KITAS Investor 2 Tahun. Butuh penawaran perpanjangan & alih status.',
+    address: 'Sunset Road No. 88, Seminyak, Bali',
+    notes: '2-Year Investor KITAS holder. Requires extension offer and status conversion.',
     createdAt: '2025-01-15',
   },
   {
@@ -24,60 +24,60 @@ export const INITIAL_CLIENTS: Client[] = [
     companyName: 'PT Synergy Utama Global',
     phone: '6281987654321',
     email: 'samantha.miller@gmail.com',
-    address: 'Jl. Raya Canggu No. 12, Badung, Bali',
-    notes: 'Pemegang KITAS Kerja (Direktur Operasional).',
+    address: 'Raya Canggu No. 12, Badung, Bali',
+    notes: 'Working KITAS holder (Chief Operating Officer).',
     createdAt: '2025-02-10',
   },
   {
     id: 'cli-003',
     name: 'Kenji Takahashi',
-    nationality: 'Jepang',
+    nationality: 'Japan',
     passportNo: 'TK902814',
     clientType: 'Corporate',
     companyName: 'PT Nusantara Manufacturing Tech',
     phone: '6282111223344',
     email: 'takahashi@nusantaratech.co.id',
-    address: 'Kawasan Industri MM2100, Cikarang, Jawa Barat',
-    notes: 'Penanggung jawab expatriat Jepang di Jakarta/Cikarang.',
+    address: 'MM2100 Industrial Town, Cikarang, West Java',
+    notes: 'In-charge for Japanese expatriates in Jakarta/Cikarang branch.',
     createdAt: '2024-11-01',
   },
   {
     id: 'cli-004',
     name: 'Budi Santoso',
-    nationality: 'Indonesia (WNI)',
+    nationality: 'Indonesia',
     passportNo: 'X1829402',
     clientType: 'Individual',
-    companyName: 'Pribadi',
+    companyName: 'Personal',
     phone: '6285678901234',
     email: 'budi.santoso@yahoo.com',
-    address: 'Jl. Wijaya No. 45, Kebayoran Baru, Jakarta Selatan',
-    notes: 'Perpanjangan Paspor WNI 10 Tahun untuk perjalanan bisnis Singapura.',
+    address: 'Wijaya St. No. 45, Kebayoran Baru, South Jakarta',
+    notes: '10-Year Indonesian Passport renewal for business trips to Singapore.',
     createdAt: '2025-03-01',
   },
   {
     id: 'cli-005',
     name: 'Maria Carmen Garcia',
-    nationality: 'Spanyol',
+    nationality: 'Spain',
     passportNo: 'ESP782910',
     clientType: 'Expat',
     companyName: 'PT Synergy Resort & Hospitality',
     phone: '6281333444555',
     email: 'maria.garcia@synergyresort.com',
     address: 'Ubud Kayu Manis No. 5, Gianyar, Bali',
-    notes: 'Membutuhkan perpanjangan VOA & pengurusan KITAS Keluarga.',
+    notes: 'Needs VOA extension & Family KITAS application.',
     createdAt: '2025-03-20',
   },
   {
     id: 'cli-006',
     name: 'David Chen',
-    nationality: 'Singapura',
+    nationality: 'Singapore',
     passportNo: 'K8920192',
     clientType: 'Corporate',
     companyName: 'PT Chen Global Ventures',
     phone: '6591234567',
     email: 'david@chenglobal.sg',
-    address: 'SCBD District 8, Tower Treasury, Jakarta Selatan',
-    notes: 'PMA Investor & Komisaris Utama.',
+    address: 'SCBD District 8, Treasury Tower, South Jakarta',
+    notes: 'PMA Investor & Chief Commissioner.',
     createdAt: '2024-08-12',
   },
 ];
@@ -90,15 +90,15 @@ export const INITIAL_DOCUMENTS: ImmigrationDocument[] = [
     clientPhone: '6281234567890',
     clientEmail: 'a.volkov@balidigital.id',
     companyName: 'PT Bali Digital Investama',
-    docType: 'KITAS Investor',
+    docType: 'Investor KITAS',
     docNumber: '2C12EF8901-M',
-    country: 'Rusia',
+    country: 'Russia',
     issueDate: '2024-08-01',
     expiryDate: getDateDaysFromNow(12), // 12 days left (CRITICAL alert)
     sponsorName: 'PT Bali Digital Investama',
     status: 'Renewal_Due',
-    processStage: 'Pengumpulan Berkas Client',
-    notes: 'Client sudah diinfokan bahwa KITAS tinggal 12 hari lagi. Menunggu kelengkapan laporan LKPM.',
+    processStage: 'Client File Collection',
+    notes: 'Client informed that KITAS expires in 12 days. Awaiting investment report (LKPM).',
     reminderSentCount: 2,
     lastReminderDate: getDateDaysFromNow(-3),
   },
@@ -109,15 +109,15 @@ export const INITIAL_DOCUMENTS: ImmigrationDocument[] = [
     clientPhone: '6281234567890',
     clientEmail: 'a.volkov@balidigital.id',
     companyName: 'PT Bali Digital Investama',
-    docType: 'Paspor WNA',
+    docType: 'Foreigner Passport',
     docNumber: '75N982412',
-    country: 'Rusia',
+    country: 'Russia',
     issueDate: '2016-09-10',
     expiryDate: getDateDaysFromNow(48), // 48 days left (WARNING alert)
-    sponsorName: 'Pribadi',
+    sponsorName: 'Personal',
     status: 'Active',
-    processStage: 'Berkas Belum Diterima',
-    notes: 'Paspor tersisa < 6 bulan. Perlu perpanjangan di Kedutaan Rusia sebelum submit KITAS.',
+    processStage: 'Documents Pending',
+    notes: 'Passport validity < 6 months. Needs Embassy renewal before KITAS submission.',
     reminderSentCount: 1,
     lastReminderDate: getDateDaysFromNow(-7),
   },
@@ -128,15 +128,15 @@ export const INITIAL_DOCUMENTS: ImmigrationDocument[] = [
     clientPhone: '6281987654321',
     clientEmail: 'samantha.miller@gmail.com',
     companyName: 'PT Synergy Utama Global',
-    docType: 'KITAS Kerja',
+    docType: 'Working KITAS',
     docNumber: '2C11AB3412-K',
     country: 'Australia',
     issueDate: '2024-09-01',
     expiryDate: getDateDaysFromNow(-4), // Expired 4 days ago! (EXPIRED alert)
     sponsorName: 'PT Synergy Utama Global',
     status: 'Expired',
-    processStage: 'Submit Online / Imigrasi',
-    notes: 'Perhatian: Masa berlaku lewat 4 hari! Kena denda overstay atau perlu pengurusan izin khusus.',
+    processStage: 'Online/Immigration Submission',
+    notes: 'Urgent: Overstay by 4 days! Overstay fines apply or special permit processing required.',
     reminderSentCount: 4,
     lastReminderDate: getDateDaysFromNow(-1),
   },
@@ -147,15 +147,15 @@ export const INITIAL_DOCUMENTS: ImmigrationDocument[] = [
     clientPhone: '6282111223344',
     clientEmail: 'takahashi@nusantaratech.co.id',
     companyName: 'PT Nusantara Manufacturing Tech',
-    docType: 'KITAP',
+    docType: 'KITAP (Permanent Stay)',
     docNumber: '5C10ZZ9912-P',
-    country: 'Jepang',
+    country: 'Japan',
     issueDate: '2021-09-20',
     expiryDate: getDateDaysFromNow(75), // 75 days left (ATTENTION alert)
     sponsorName: 'PT Nusantara Manufacturing Tech',
     status: 'Active',
-    processStage: 'Berkas Belum Diterima',
-    notes: 'KITAP 5 tahunan mau perpanjangan/MERP. Jadwal kontak ke HR Perusahaan bulan depan.',
+    processStage: 'Documents Pending',
+    notes: '5-Year KITAP renewal / MERP. Schedule contact with Corporate HR next month.',
     reminderSentCount: 0,
   },
   {
@@ -164,16 +164,16 @@ export const INITIAL_DOCUMENTS: ImmigrationDocument[] = [
     clientName: 'Budi Santoso',
     clientPhone: '6285678901234',
     clientEmail: 'budi.santoso@yahoo.com',
-    companyName: 'Pribadi',
-    docType: 'Paspor WNI',
+    companyName: 'Personal',
+    docType: 'Indonesian Passport',
     docNumber: 'X1829402',
     country: 'Indonesia',
     issueDate: '2020-04-10',
     expiryDate: getDateDaysFromNow(22), // 22 days left (CRITICAL alert)
-    sponsorName: 'Pribadi',
+    sponsorName: 'Personal',
     status: 'In_Progress',
-    processStage: 'Jadwal Biometrik & Foto',
-    notes: 'Sudah mendaftar M-Paspor. Jadwal foto di Kantor Imigrasi Kelas I Jaksel hari Kamis.',
+    processStage: 'Biometrics & Photo Appointment',
+    notes: 'Registered on M-Paspor app. Photo appointment at South Jakarta Immigration Office on Thursday.',
     reminderSentCount: 1,
     lastReminderDate: getDateDaysFromNow(-2),
   },
@@ -184,15 +184,15 @@ export const INITIAL_DOCUMENTS: ImmigrationDocument[] = [
     clientPhone: '6281333444555',
     clientEmail: 'maria.garcia@synergyresort.com',
     companyName: 'PT Synergy Resort & Hospitality',
-    docType: 'VOA / ITK',
+    docType: 'VOA / Tourist ITK',
     docNumber: 'VOA-88291029',
-    country: 'Spanyol',
+    country: 'Spain',
     issueDate: '2025-03-01',
     expiryDate: getDateDaysFromNow(8), // 8 days left (CRITICAL alert)
     sponsorName: 'PT Synergy Resort & Hospitality',
     status: 'Renewal_Due',
-    processStage: 'Submit Online / Imigrasi',
-    notes: 'VOA Extension 30 hari kedua di Imigrasi Denpasar.',
+    processStage: 'Online/Immigration Submission',
+    notes: 'Second 30-day VOA Extension at Denpasar Immigration Office.',
     reminderSentCount: 2,
     lastReminderDate: getDateDaysFromNow(-1),
   },
@@ -203,15 +203,15 @@ export const INITIAL_DOCUMENTS: ImmigrationDocument[] = [
     clientPhone: '6591234567',
     clientEmail: 'david@chenglobal.sg',
     companyName: 'PT Chen Global Ventures',
-    docType: 'KITAS Investor',
+    docType: 'Investor KITAS',
     docNumber: '2C15FF1122-M',
-    country: 'Singapura',
+    country: 'Singapore',
     issueDate: '2024-11-15',
     expiryDate: getDateDaysFromNow(240), // 240 days left (SAFE alert)
     sponsorName: 'PT Chen Global Ventures',
     status: 'Active',
-    processStage: 'Selesai & Diserahkan',
-    notes: 'KITAS Investor 2 tahun baru terbit bulan November.',
+    processStage: 'Completed & Delivered',
+    notes: 'New 2-Year Investor KITAS issued in November.',
     reminderSentCount: 0,
   },
 ];
@@ -219,98 +219,98 @@ export const INITIAL_DOCUMENTS: ImmigrationDocument[] = [
 export const INITIAL_SERVICES: AgencyService[] = [
   {
     id: 'srv-001',
-    name: 'Pengurusan Paspor WNI (Elektronik / Biasa)',
-    category: 'Paspor',
-    estimatedDays: '1 - 3 Hari Kerja',
-    requirements: ['e-KTP', 'Kartu Keluarga', 'Akte Kelahiran / Ijazah / Buku Nikah', 'Paspor Lama (jika perpanjangan)'],
-    description: 'Layanan pendampingan & percepatan antrean M-Paspor, foto biometrik hingga pengambilan paspor WNI.',
-    estimatedFeeIndonesian: 'Rp 650.000 - Rp 1.500.000 (Sesuai paket kilat)',
+    name: 'Indonesian Passport Processing (Ordinary / E-Passport)',
+    category: 'Passports',
+    estimatedDays: '1 - 3 Working Days',
+    requirements: ['National ID (KTP)', 'Family Card (KK)', 'Birth Cert / Marriage Cert / Diploma', 'Previous Passport (if renewal)'],
+    description: 'Assistance & priority appointment for M-Paspor, biometric photo, and passport collection.',
+    estimatedFeeIndonesian: 'IDR 650,000 - IDR 1,500,000 (Express option available)',
   },
   {
     id: 'srv-002',
-    name: 'KITAS Investor (PMA 1 - 2 Tahun)',
-    category: 'Izin Tinggal (KITAS/KITAP)',
-    estimatedDays: '7 - 14 Hari Kerja',
-    requirements: ['Paspor WNA valid > 18 bulan', 'NIB & Izin Usaha PT PMA', 'Akta Pendirian PT PMA & SK Kemenkumham', 'Kepemilikan Saham min. Rp 10 Miliar / PMA rules'],
-    description: 'Izin tinggal terbatas untuk investor / pemegang saham PT PMA di Indonesia.',
-    estimatedFeeIndonesian: 'Rp 12.000.000 - Rp 18.000.000',
+    name: 'Investor KITAS (PMA Foreign Investment 1 - 2 Years)',
+    category: 'Residence Permits (KITAS/KITAP)',
+    estimatedDays: '7 - 14 Working Days',
+    requirements: ['Valid Foreign Passport > 18 months', 'NIB & Business License of PT PMA', 'Deed of Establishment & Ministry Approval', 'Shareholding min. IDR 10 Billion / PMA rules'],
+    description: 'Temporary residence permit for investors and directors of PT PMA companies in Indonesia.',
+    estimatedFeeIndonesian: 'IDR 12,000,000 - IDR 18,000,000',
   },
   {
     id: 'srv-003',
-    name: 'KITAS TKA (Tenaga Kerja Asing)',
-    category: 'Izin Tinggal (KITAS/KITAP)',
-    estimatedDays: '10 - 20 Hari Kerja',
-    requirements: ['Paspor WNA', 'RPTKA yang disetujui Kemnaker', 'DKP-TKA ($1,200/tahun)', 'Ijazah & Sertifikat Pengalaman Kerja', 'Asuransi Kesehatan'],
-    description: 'Paket lengkap pengurusan RPTKA, Vitas, hingga stempel KITAS kerja TKA.',
-    estimatedFeeIndonesian: 'Rp 15.000.000 - Rp 22.000.000',
+    name: 'Working KITAS (Foreign Worker / Expat Employee)',
+    category: 'Residence Permits (KITAS/KITAP)',
+    estimatedDays: '10 - 20 Working Days',
+    requirements: ['Foreign Passport', 'Approved RPTKA Work Permit from Ministry of Manpower', 'DKP-TKA Skill Levy ($1,200/year)', 'University Degree & Experience Certificate', 'Health Insurance'],
+    description: 'Complete package from RPTKA approval, Vitas, to working KITAS passport stamping.',
+    estimatedFeeIndonesian: 'IDR 15,000,000 - IDR 22,000,000',
   },
   {
     id: 'srv-004',
-    name: 'Perpanjangan VOA (Visa On Arrival)',
-    category: 'Visa & VOA',
-    estimatedDays: '3 - 5 Hari Kerja',
-    requirements: ['Paspor Asli', 'Tiket Keluar Indonesia (Return Ticket)', 'Bukti VOA pertama'],
-    description: 'Perpanjangan izin tinggal kunjungan VOA 30 hari tambahan tanpa repot antre.',
-    estimatedFeeIndonesian: 'Rp 1.200.000 - Rp 1.800.000',
+    name: 'Visa On Arrival (VOA) Extension',
+    category: 'Visas & VOA',
+    estimatedDays: '3 - 5 Working Days',
+    requirements: ['Original Passport', 'Return Flight Ticket out of Indonesia', 'Proof of First VOA'],
+    description: 'Extension of 30-day VOA tourist stay permit without queuing at immigration.',
+    estimatedFeeIndonesian: 'IDR 1,200,000 - IDR 1,800,000',
   },
   {
     id: 'srv-005',
-    name: 'Pengurusan KITAP (Izin Tinggal Tetap 5 Tahun)',
-    category: 'Izin Tinggal (KITAS/KITAP)',
-    estimatedDays: '14 - 30 Hari Kerja',
-    requirements: ['KITAS aktif berturut-turut min. 3-4 tahun', 'Paspor WNA valid > 24 bulan', 'Dokumen Sponsor PT PMA / Suami-Istri WNI'],
-    description: 'Alih status dari KITAS ke KITAP dengan masa berlaku 5 tahun.',
-    estimatedFeeIndonesian: 'Rp 25.000.000 - Rp 35.000.000',
+    name: 'KITAP Permanent Residence Permit (5 Years)',
+    category: 'Residence Permits (KITAS/KITAP)',
+    estimatedDays: '14 - 30 Working Days',
+    requirements: ['Continuous active KITAS for min. 3-4 years', 'Valid Foreign Passport > 24 months', 'Sponsor Documents (PT PMA or Indonesian Spouse)'],
+    description: 'Status conversion from KITAS to 5-year Permanent Residence Permit (KITAP).',
+    estimatedFeeIndonesian: 'IDR 25,000,000 - IDR 35,000,000',
   },
   {
     id: 'srv-006',
     name: 'EPO (Exit Permit Only) & ERP',
-    category: 'Izin Tinggal (KITAS/KITAP)',
-    estimatedDays: '2 - 3 Hari Kerja',
-    requirements: ['Paspor Asli', 'KITAS Asli', 'Tiket Pesawat Kepulangan Negara Asal'],
-    description: 'Pengembalian dokumen keimigrasian saat expat mengakhiri masa kerja / tinggal di Indonesia.',
-    estimatedFeeIndonesian: 'Rp 1.500.000 - Rp 2.500.000',
+    category: 'Residence Permits (KITAS/KITAP)',
+    estimatedDays: '2 - 3 Working Days',
+    requirements: ['Original Passport', 'Original KITAS', 'Departure Flight Ticket'],
+    description: 'Cancellation and handover of immigration documents when an expat terminates stay or employment.',
+    estimatedFeeIndonesian: 'IDR 1,500,000 - IDR 2,500,000',
   },
 ];
 
 export const INITIAL_REMINDER_TEMPLATES: ReminderTemplate[] = [
   {
     id: 'tpl-01',
-    title: 'WhatsApp Pengingat Perpanjangan (Bahasa Indonesia)',
-    language: 'Indonesia',
-    content: `Halo Bpk/Ibu *{CLIENT_NAME}*,
-
-Salam hangat dari *Synergy Success Consultant / A.R.I.S. Biro Jasa*.
-
-Melalui pesan ini, kami ingin menginformasikan bahwa dokumen keimigrasian Anda:
-📌 *{DOC_TYPE}* (No: {DOC_NUMBER})
-⏳ Masa Berlaku Expired: *{EXPIRY_DATE}*
-⚠️ Sisa Waktu: *{DAYS_LEFT} hari lagi*.
-
-Agar terhindar dari denda overstay dan kendala administrasi perjalanan, kami menyarankan agar proses perpanjangan segera dimulai sekarang.
-
-Persyaratan & berkas dapat kami bantu jemput / proses online. Apakah Bpk/Ibu bersedia kami bantu proseskan hari ini?
-
-Terima kasih.
-_A.R.I.S. Imigrasi & Success Consultant_
-Telp/WA: {AGENCY_PHONE}`,
-  },
-  {
-    id: 'tpl-02',
-    title: 'WhatsApp Reminder (English for Expats)',
+    title: 'Standard Client Expiry Reminder',
     language: 'English',
     content: `Dear *{CLIENT_NAME}*,
 
-Warm greetings from *Synergy Success Consultant / A.R.I.S. Immigration Services*.
+Greetings from *Synergy Success Consultant / A.R.I.S. Client Services*.
 
-This is a polite reminder regarding your Indonesian immigration document:
+We would like to remind you that your Indonesian immigration document is approaching its expiration date:
+📌 *Document*: {DOC_TYPE} (No: {DOC_NUMBER})
+⏳ *Expiration Date*: *{EXPIRY_DATE}*
+⚠️ *Time Remaining*: *{DAYS_LEFT} days left*.
+
+To prevent overstay fines (IDR 1,000,000/day) and travel inconveniences, we recommend initiating the extension process promptly.
+
+Our team is ready to process your documents online or collect required physical files. Please let us know if you would like us to begin processing today.
+
+Thank you.
+_A.R.I.S. Immigration & Success Consultant_
+Phone/WhatsApp: {AGENCY_PHONE}`,
+  },
+  {
+    id: 'tpl-02',
+    title: 'Urgent Expat Renewal Notice',
+    language: 'English',
+    content: `URGENT NOTICE: *{CLIENT_NAME}*,
+
+Greetings from *Synergy Success Consultant / A.R.I.S.*
+
+This is an urgent reminder regarding your document:
 📌 *Document*: {DOC_TYPE} (No: {DOC_NUMBER})
 ⏳ *Expiration Date*: {EXPIRY_DATE}
 ⚠️ *Days Remaining*: *{DAYS_LEFT} days left*.
 
-To avoid overstay fines (IDR 1,000,000/day) or travel disruptions, we strongly recommend initiating your extension process as soon as possible.
+Please note that Indonesian immigration rules strictly enforce overstay penalties and travel bans for expired permits. 
 
-Our team is ready to assist you with all the required sponsorship paperwork and immigration procedures. Please reply to this message or contact us to confirm your extension.
+Please reply to this message or contact us immediately so we can file your extension submission today.
 
 Best regards,
 _A.R.I.S. Client Support Team_
@@ -318,28 +318,28 @@ WhatsApp/Phone: {AGENCY_PHONE}`,
   },
   {
     id: 'tpl-03',
-    title: 'Official Email Notification (Corporate Sponsor)',
+    title: 'Corporate Sponsor Expiry Notification',
     language: 'Bilingual',
-    content: `Subject: PEMBERITAHUAN JATUH TEMPO DOKUMEN KEIMIGRASIAN / IMMIGRATION EXPIRY NOTICE - {CLIENT_NAME} ({COMPANY_NAME})
+    content: `Subject: IMMIGRATION EXPIRY NOTICE - {CLIENT_NAME} ({COMPANY_NAME})
 
-Kepada Yth.
-HR Manager / Sponsor
+Attention:
+HR Manager / Company Sponsor
 {COMPANY_NAME}
 
-Dengan hormat,
+Dear Sir/Madam,
 
-Kami dari Biro Jasa Keimigrasian A.R.I.S. (Synergy Success Consultant) memberitahukan jadwal jatuh tempo dokumen Tenaga Kerja Asing / Investor di perusahaan Anda:
+This is an official notification from A.R.I.S. (Synergy Success Consultant) regarding the expiration schedule of your foreign worker / investor immigration permit:
 
-Nama TKA/Client : {CLIENT_NAME}
-Jenis Dokumen   : {DOC_TYPE}
-Nomor Dokumen   : {DOC_NUMBER}
-Tanggal Expired : {EXPIRY_DATE}
-Sisa Masa Berlaku: {DAYS_LEFT} Hari
+Client Name     : {CLIENT_NAME}
+Document Type   : {DOC_TYPE}
+Document Number : {DOC_NUMBER}
+Expiry Date     : {EXPIRY_DATE}
+Days Remaining  : {DAYS_LEFT} Days
 
-Mengingat proses verifikasi di Kantor Imigrasi membutuhkan waktu 7-14 hari kerja, mohon tanggapan untuk kelanjutan proses perpanjangan izin tinggal ybs.
+Immigration processing and verification requires 7-14 working days. Please confirm whether we should proceed with the permit extension for the above-mentioned personnel.
 
-Hormat kami,
-Tim Konsultan Keimigrasian A.R.I.S.
-Synergy Success Consultant`,
+Sincerely,
+Immigration Consultant Team
+A.R.I.S. — Synergy Success Consultant`,
   },
 ];

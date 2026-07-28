@@ -49,7 +49,7 @@ export const BackupRestore: React.FC<BackupRestoreProps> = ({
         const parsed = JSON.parse(content);
 
         if (!parsed.clients || !parsed.documents) {
-          throw new Error('Format berkas JSON tidak valid. Membutuhkan data "clients" dan "documents".');
+          throw new Error('Invalid JSON format. Requires "clients" and "documents" data arrays.');
         }
 
         onImportData({
@@ -57,9 +57,9 @@ export const BackupRestore: React.FC<BackupRestoreProps> = ({
           documents: parsed.documents,
         });
 
-        alert(`Database A.R.I.S. berhasil dipulihkan! (${parsed.clients.length} Client, ${parsed.documents.length} Dokumen).`);
+        alert(`A.R.I.S. database restored successfully! (${parsed.clients.length} Clients, ${parsed.documents.length} Documents).`);
       } catch (err: any) {
-        alert(`Gagal memulihkan berkas backup: ${err.message}`);
+        alert(`Failed to restore backup file: ${err.message}`);
       }
     };
     reader.readAsText(file);
@@ -71,13 +71,13 @@ export const BackupRestore: React.FC<BackupRestoreProps> = ({
       <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 rounded-2xl p-6 text-white shadow-md shadow-blue-500/10 space-y-2">
         <div className="inline-flex items-center space-x-2 px-2.5 py-1 rounded-full bg-white/15 border border-white/20 text-blue-100 text-xs font-semibold">
           <Database className="w-3.5 h-3.5 text-blue-200" />
-          <span>Pengelolaan Backup & Pemulihan Data A.R.I.S.</span>
+          <span>A.R.I.S. Data Backup & Restoration Management</span>
         </div>
         <h2 className="text-xl font-bold tracking-tight text-white">
-          Backup, Import & Reset Database Biro Jasa
+          Database Backup, Import & System Reset
         </h2>
         <p className="text-xs text-blue-100 leading-relaxed">
-          Amankan seluruh catatan dokumen, data kontak client, dan histori reminder dengan mengunduh salinan berkas JSON atau memulihkannya sewaktu-waktu.
+          Secure all document records, client contact profiles, and reminder histories by downloading JSON backups or restoring them at any time.
         </p>
       </div>
 
@@ -93,22 +93,22 @@ export const BackupRestore: React.FC<BackupRestoreProps> = ({
               </div>
               <div>
                 <h3 className="font-bold text-base text-slate-900">
-                  Unduh Salinan Backup (Export JSON)
+                  Download Database Backup (Export JSON)
                 </h3>
                 <p className="text-xs text-slate-500">
-                  Simpan seluruh data ke dalam 1 file JSON di komputer Anda.
+                  Save complete system records into a single JSON file on your computer.
                 </p>
               </div>
             </div>
 
             <div className="bg-slate-50 p-3.5 rounded-xl text-xs space-y-2 border border-slate-100">
               <div className="flex justify-between">
-                <span className="text-slate-500">Total Client Terdaftar:</span>
-                <strong className="text-slate-900">{clients.length} Record</strong>
+                <span className="text-slate-500">Total Registered Clients:</span>
+                <strong className="text-slate-900">{clients.length} Records</strong>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-500">Total Dokumen Paspor/KITAS:</span>
-                <strong className="text-slate-900">{documents.length} Record</strong>
+                <span className="text-slate-500">Total Passport & KITAS Documents:</span>
+                <strong className="text-slate-900">{documents.length} Records</strong>
               </div>
             </div>
           </div>
@@ -118,7 +118,7 @@ export const BackupRestore: React.FC<BackupRestoreProps> = ({
             className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-md shadow-blue-500/20 flex items-center justify-center space-x-2 transition-all mt-4"
           >
             <Download className="w-4 h-4" />
-            <span>Ekspor & Unduh Backup Database (.json)</span>
+            <span>Export & Download Backup (.json)</span>
           </button>
         </div>
 
@@ -131,16 +131,16 @@ export const BackupRestore: React.FC<BackupRestoreProps> = ({
               </div>
               <div>
                 <h3 className="font-bold text-base text-slate-900">
-                  Pulihkan Data dari Berkas Backup (Import)
+                  Restore Data from Backup (Import)
                 </h3>
                 <p className="text-xs text-slate-500">
-                  Unggah berkas JSON backup A.R.I.S. yang pernah diunduh sebelumnya.
+                  Upload a previously exported A.R.I.S. JSON backup file.
                 </p>
               </div>
             </div>
 
             <p className="text-xs text-slate-600 leading-relaxed">
-              Memulihkan berkas JSON akan memperbarui database lokal dengan data dari file backup tersebut.
+              Restoring from a JSON file will update your active database records with data from the uploaded file.
             </p>
           </div>
 
@@ -157,7 +157,7 @@ export const BackupRestore: React.FC<BackupRestoreProps> = ({
               className="w-full py-3 px-4 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl shadow-md shadow-purple-500/20 flex items-center justify-center space-x-2 transition-all"
             >
               <Upload className="w-4 h-4" />
-              <span>Pilih File Backup (.json) & Restore</span>
+              <span>Select Backup File (.json) & Restore</span>
             </button>
           </div>
         </div>
@@ -172,24 +172,24 @@ export const BackupRestore: React.FC<BackupRestoreProps> = ({
           </div>
           <div>
             <h4 className="font-bold text-sm text-slate-900">
-              Reset ke Data Sampel Awal Synergy Biro Jasa
+              Reset to Initial Sample Data
             </h4>
             <p className="text-xs text-slate-600">
-              Kembalikan database ke contoh awal dengan data client expat & paspor terdaftar.
+              Reset database back to initial sample expat, passport, and KITAS records.
             </p>
           </div>
         </div>
 
         <button
           onClick={() => {
-            if (confirm('Apakah Anda yakin ingin mereset seluruh data kembali ke sampel awal? Data perubahan Anda akan ditimpa.')) {
+            if (confirm('Are you sure you want to reset all data back to the default sample records? Your changes will be overwritten.')) {
               onResetToDefault();
             }
           }}
           className="px-4 py-2 bg-white hover:bg-rose-600 hover:text-white border border-slate-200 text-slate-800 text-xs font-bold rounded-xl transition-all shrink-0 shadow-2xs"
         >
           <RotateCcw className="w-3.5 h-3.5 inline mr-1.5" />
-          <span>Reset Sampel Awal</span>
+          <span>Reset Sample Data</span>
         </button>
       </div>
 

@@ -62,10 +62,10 @@ export const ClientList: React.FC<ClientListProps> = ({
           <div>
             <h2 className="text-xl font-bold text-slate-900 flex items-center space-x-2">
               <Users className="w-5 h-5 text-blue-600" />
-              <span>Database Client & Sponsor Perusahaan ({filteredClients.length})</span>
+              <span>Client & Sponsor Database ({filteredClients.length})</span>
             </h2>
             <p className="text-xs text-slate-500 mt-0.5">
-              Kelola data kontak client WNA/WNI, nomor WhatsApp, email, dan sponsor PT PMA untuk pengiriman pengingat.
+              Manage expat & local client contacts, WhatsApp numbers, email, and PMA sponsor companies.
             </p>
           </div>
 
@@ -74,7 +74,7 @@ export const ClientList: React.FC<ClientListProps> = ({
             className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-semibold shadow-md shadow-blue-500/20 flex items-center justify-center space-x-2 transition-all self-start md:self-auto"
           >
             <Plus className="w-4 h-4" />
-            <span>Tambah Client Baru</span>
+            <span>Add New Client</span>
           </button>
         </div>
 
@@ -84,7 +84,7 @@ export const ClientList: React.FC<ClientListProps> = ({
             <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
-              placeholder="Cari Nama Client, Kebangsaan, PT Sponsor, WA..."
+              placeholder="Search Client Name, Nationality, Sponsor, WA..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900"
@@ -96,10 +96,10 @@ export const ClientList: React.FC<ClientListProps> = ({
             onChange={(e) => setSelectedClientType(e.target.value)}
             className="w-full py-2 px-3 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900"
           >
-            <option value="ALL">Semua Kategori Client</option>
-            <option value="Expat">Expat / WNA</option>
-            <option value="Corporate">Corporate / Sponsor PT PMA</option>
-            <option value="Individual">Individual / WNI</option>
+            <option value="ALL">All Client Categories</option>
+            <option value="Expat">Expat / Foreigner</option>
+            <option value="Corporate">Corporate / Sponsor Company</option>
+            <option value="Individual">Individual / Indonesian</option>
           </select>
         </div>
       </div>
@@ -108,7 +108,7 @@ export const ClientList: React.FC<ClientListProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filteredClients.length === 0 ? (
           <div className="col-span-full p-8 text-center bg-white rounded-2xl border border-slate-200 text-slate-500">
-            Tidak ditemukan data client yang cocok dengan filter pencarian.
+            No client records found matching search filters.
           </div>
         ) : (
           filteredClients.map((client) => {
@@ -145,7 +145,7 @@ export const ClientList: React.FC<ClientListProps> = ({
                           {client.nationality}
                         </span>
                         <span>•</span>
-                        <span>Paspor: <strong className="text-slate-800">{client.passportNo}</strong></span>
+                        <span>Passport: <strong className="text-slate-800">{client.passportNo}</strong></span>
                       </div>
                     </div>
 
@@ -160,12 +160,12 @@ export const ClientList: React.FC<ClientListProps> = ({
 
                       <button
                         onClick={() => {
-                          if (confirm(`Apakah Anda yakin ingin menghapus data client ${client.name}?`)) {
+                          if (confirm(`Are you sure you want to delete client ${client.name}?`)) {
                             onDeleteClient(client.id);
                           }
                         }}
                         className="p-1.5 rounded-lg bg-slate-100 hover:bg-rose-100 text-slate-500 hover:text-rose-600 transition-colors"
-                        title="Hapus Client"
+                        title="Delete Client"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
@@ -177,7 +177,7 @@ export const ClientList: React.FC<ClientListProps> = ({
                     {client.companyName && (
                       <div className="flex items-center space-x-2">
                         <Building className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                        <span className="font-semibold text-slate-900">PT / Sponsor: {client.companyName}</span>
+                        <span className="font-semibold text-slate-900">Sponsor: {client.companyName}</span>
                       </div>
                     )}
 
@@ -207,7 +207,7 @@ export const ClientList: React.FC<ClientListProps> = ({
                       className="text-xs font-semibold text-blue-600 hover:underline flex items-center space-x-1"
                     >
                       <FileText className="w-3.5 h-3.5" />
-                      <span>{clientDocs.length} Dokumen Terdaftar</span>
+                      <span>{clientDocs.length} Documents Registered</span>
                       <ChevronRight className={`w-3.5 h-3.5 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
                     </button>
 
@@ -216,7 +216,7 @@ export const ClientList: React.FC<ClientListProps> = ({
                       className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-medium rounded-lg transition-colors flex items-center space-x-1"
                     >
                       <Plus className="w-3 h-3 text-blue-500" />
-                      <span>Tambah Dokumen</span>
+                      <span>Add Document</span>
                     </button>
                   </div>
 
@@ -224,7 +224,7 @@ export const ClientList: React.FC<ClientListProps> = ({
                   {isExpanded && (
                     <div className="space-y-1.5 pt-2">
                       {clientDocs.length === 0 ? (
-                        <p className="text-[11px] text-slate-400 italic">Belum ada catatan dokumen keimigrasian untuk client ini.</p>
+                        <p className="text-[11px] text-slate-400 italic">No immigration document records for this client yet.</p>
                       ) : (
                         clientDocs.map((doc) => (
                           <div 

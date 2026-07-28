@@ -262,7 +262,7 @@ export default function App() {
               <strong className="text-slate-900 font-bold">A.R.I.S.</strong> (Application Reminding Integrated System) &copy; 2026 — Synergy Success Consultant
             </div>
             <div className="text-slate-500">
-              Sistem Pencatatan & Pengingat Otomatis Paspor WNI/WNA, KITAS, KITAP & Dokumen Keimigrasian
+              Automated Passport, KITAS, KITAP & Expat Document Expiry & Reminder System
             </div>
           </div>
         </footer>

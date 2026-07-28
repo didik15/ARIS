@@ -134,7 +134,7 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
             </div>
             <div>
               <h3 className="font-bold text-base text-white">
-                Kirim Pengingat (Reminder) — A.R.I.S.
+                Send Expiry Reminder — A.R.I.S.
               </h3>
               <p className="text-xs text-slate-400">
                 Client: <strong className="text-white">{document.clientName}</strong> ({document.docType})
@@ -156,17 +156,17 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
           {/* Document Summary Badge */}
           <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
             <div>
-              <span className="text-slate-500 block">Jenis & Nomor Dokumen</span>
+              <span className="text-slate-500 block">Type & Document Number</span>
               <span className="font-bold text-slate-900 text-sm">{document.docType} ({document.docNumber})</span>
             </div>
 
             <div>
-              <span className="text-slate-500 block">Tanggal Expired</span>
+              <span className="text-slate-500 block">Expiry Date</span>
               <span className="font-semibold text-slate-900">{formattedExpiry}</span>
             </div>
 
             <div>
-              <span className="text-slate-500 block">Sisa Waktu</span>
+              <span className="text-slate-500 block">Remaining Time</span>
               <span className={`font-bold px-2.5 py-1 rounded-md text-xs border ${
                 daysLeft < 0
                   ? 'bg-rose-600 text-white border-rose-700 font-black'
@@ -176,12 +176,12 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
                   ? 'bg-amber-100 text-amber-950 border-amber-300 font-bold'
                   : 'bg-emerald-100 text-emerald-950 border-emerald-300 font-bold'
               }`}>
-                {daysLeft < 0 ? `EXPIRED (${Math.abs(daysLeft)} hr)` : `${daysLeft} Hari Lagi`}
+                {daysLeft < 0 ? `EXPIRED (${Math.abs(daysLeft)} days ago)` : `${daysLeft} Days Left`}
               </span>
             </div>
 
             <div>
-              <span className="text-slate-500 block">Nomor WhatsApp Client</span>
+              <span className="text-slate-500 block">Client WhatsApp Number</span>
               <span className="font-bold text-emerald-600">{document.clientPhone}</span>
             </div>
           </div>
@@ -189,7 +189,7 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
           {/* Template Selection Tabs */}
           <div className="space-y-2">
             <label className="text-xs font-bold text-slate-700 block">
-              Pilih Templat Pesan:
+              Select Message Template:
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               {INITIAL_REMINDER_TEMPLATES.map((tpl) => (
@@ -203,7 +203,7 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
                   }`}
                 >
                   <span className="block font-semibold truncate">{tpl.title}</span>
-                  <span className="text-[10px] text-slate-400">Bahasa: {tpl.language}</span>
+                  <span className="text-[10px] text-slate-400">Language: {tpl.language}</span>
                 </button>
               ))}
             </div>
@@ -214,7 +214,7 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
             <div className="flex items-center space-x-2">
               <Sparkles className="w-4 h-4 text-purple-600 dark:text-purple-400 shrink-0" />
               <span className="text-xs font-semibold text-purple-900 dark:text-purple-200">
-                Buat Pesan Draf Otomatis dengan Gemini AI
+                Draft Message Automatically with Gemini AI
               </span>
             </div>
 
@@ -224,10 +224,10 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
                 onChange={(e: any) => setAiLanguage(e.target.value)}
                 className="py-1 px-2 text-xs bg-white dark:bg-slate-800 border border-purple-300 dark:border-purple-700 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-500"
               >
-                <option value="Indonesia">Bahasa Indonesia</option>
                 <option value="English">English</option>
-                <option value="Japanese">Bahasa Jepang</option>
-                <option value="Mandarin">Bahasa Mandarin</option>
+                <option value="Indonesia">Indonesian</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Mandarin">Mandarin</option>
               </select>
 
               <button
@@ -236,7 +236,7 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
                 className="px-3 py-1 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-xs font-semibold shadow transition-all flex items-center space-x-1 whitespace-nowrap disabled:opacity-50"
               >
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>{isGeneratingAi ? 'Membuat Draf...' : 'Generate AI'}</span>
+                <span>{isGeneratingAi ? 'Drafting...' : 'Generate AI'}</span>
               </button>
             </div>
           </div>
@@ -252,14 +252,14 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Pratinjau & Edit Isi Pesan:
+                Preview & Edit Message Content:
               </label>
               <button
                 onClick={handleCopy}
                 className="text-xs text-blue-600 dark:text-blue-400 hover:underline flex items-center space-x-1"
               >
                 {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
-                <span>{copied ? 'Tersalin!' : 'Salin Teks'}</span>
+                <span>{copied ? 'Copied!' : 'Copy Text'}</span>
               </button>
             </div>
 
@@ -276,18 +276,18 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
         {/* Footer Actions */}
         <div className="bg-slate-50 dark:bg-slate-800/80 px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="text-xs text-slate-500">
-            Terakhir dikirim: {document.lastReminderDate || 'Belum Pernah'} ({document.reminderSentCount}x)
+            Last sent: {document.lastReminderDate || 'Never'} ({document.reminderSentCount}x)
           </div>
 
           <div className="flex items-center space-x-3 w-full sm:w-auto">
             <button
               onClick={() => {
                 onMarkReminderSent(document.id);
-                alert(`Status dokumen ${document.clientName} diperbarui: Catatan pengiriman reminder telah dicatat!`);
+                alert(`Document status for ${document.clientName} updated: Reminder logged as sent!`);
               }}
               className="px-3.5 py-2 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 text-slate-800 dark:text-slate-200 text-xs font-semibold transition-colors"
             >
-              Tandai Terkirim
+              Mark as Sent
             </button>
 
             <button
@@ -295,7 +295,7 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({
               className="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 flex items-center justify-center space-x-2 transition-all w-full sm:w-auto"
             >
               <Send className="w-4 h-4" />
-              <span>Buka & Kirim di WhatsApp Web/App</span>
+              <span>Open & Send via WhatsApp</span>
             </button>
           </div>
         </div>

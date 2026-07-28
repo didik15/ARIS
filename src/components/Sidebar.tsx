@@ -77,37 +77,37 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const navItems = [
     {
       id: 'dashboard' as TabType,
-      label: 'Dashboard & Reminder',
+      label: 'Dashboard & Reminders',
       icon: BellRing,
       badge: totalUrgent > 0 ? totalUrgent : null,
       badgeColor: 'bg-rose-600 text-white',
     },
     {
       id: 'documents' as TabType,
-      label: 'Daftar Paspor & KITAS',
+      label: 'Passports & KITAS Registry',
       icon: FileText,
     },
     {
       id: 'clients' as TabType,
-      label: 'Data Client & Sponsor',
+      label: 'Clients & Sponsors',
       icon: Users,
     },
     {
       id: 'services' as TabType,
-      label: 'Katalog Layanan Biro',
+      label: 'Agency Services Catalog',
       icon: BookOpen,
     },
     {
       id: 'backup' as TabType,
-      label: 'Backup & Restore',
+      label: 'Backup & Restore Data',
       icon: Database,
     },
   ];
 
   const themeOptions: { id: ThemeColor; name: string; colorDot: string }[] = [
-    { id: 'blue', name: 'Biru Konsultan (Default)', colorDot: 'bg-blue-600' },
-    { id: 'emerald', name: 'Emerald Syariah & Biz', colorDot: 'bg-emerald-600' },
-    { id: 'indigo', name: 'Indigo Royal Corporate', colorDot: 'bg-indigo-600' },
+    { id: 'blue', name: 'Consultant Blue (Default)', colorDot: 'bg-blue-600' },
+    { id: 'emerald', name: 'Emerald Business', colorDot: 'bg-emerald-600' },
+    { id: 'indigo', name: 'Royal Indigo Corporate', colorDot: 'bg-indigo-600' },
     { id: 'slate', name: 'Slate Enterprise Minimal', colorDot: 'bg-slate-800' },
   ];
 
@@ -201,7 +201,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               className={`w-full py-2.5 px-3.5 rounded-xl font-bold text-xs shadow-md flex items-center justify-center space-x-2 transition-all ${themeAccentBg}`}
             >
               <Plus className="w-4 h-4" />
-              <span>Catat Dokumen Baru</span>
+              <span>Record New Document</span>
             </button>
 
             <button
@@ -212,7 +212,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               className="w-full py-2 px-3.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 rounded-xl text-xs font-semibold flex items-center justify-center space-x-2 transition-all"
             >
               <Plus className="w-3.5 h-3.5 text-slate-600" />
-              <span>Tambah Client Baru</span>
+              <span>Add New Client</span>
             </button>
           </div>
 
@@ -227,10 +227,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
             >
               <div className="flex items-center space-x-1.5 font-bold text-rose-800">
                 <ShieldAlert className="w-4 h-4 text-rose-600 shrink-0" />
-                <span>Peringatan Dokumen!</span>
+                <span>Document Alert!</span>
               </div>
               <p className="text-[11px] text-rose-700 leading-snug">
-                Ada <strong className="font-bold underline">{totalUrgent} dokumen</strong> yang telah expired/segera habis masa berlaku.
+                There are <strong className="font-bold underline">{totalUrgent} documents</strong> that have expired or need urgent renewal.
               </p>
             </div>
           )}
@@ -238,7 +238,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* Navigation Menu Links */}
           <div className="space-y-1 flex-1">
             <span className="text-[10px] uppercase font-extrabold tracking-wider text-slate-400 px-2 block mb-2">
-              Navigasi Utama
+              Main Navigation
             </span>
             {navItems.map((item) => {
               const Icon = item.icon;
@@ -279,14 +279,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
             >
               <div className="flex items-center space-x-2">
                 <Palette className="w-3.5 h-3.5 text-slate-500" />
-                <span>Opsi Tema & Akses Warna</span>
+                <span>Theme & Color Options</span>
               </div>
               <span className="text-[10px] text-slate-400 capitalize">{currentTheme}</span>
             </button>
 
             {showThemePicker && (
               <div className="p-2 bg-slate-50 rounded-xl border border-slate-200 space-y-1 text-xs animate-in fade-in duration-150">
-                <span className="text-[10px] font-bold text-slate-500 px-2 block">Pilih Warna Akses Sidebar:</span>
+                <span className="text-[10px] font-bold text-slate-500 px-2 block">Sidebar Accent Color:</span>
                 {themeOptions.map((opt) => (
                   <button
                     key={opt.id}

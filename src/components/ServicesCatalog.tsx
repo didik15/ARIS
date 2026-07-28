@@ -13,13 +13,13 @@ export const ServicesCatalog: React.FC<ServicesCatalogProps> = ({ services }) =>
       <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 rounded-2xl p-6 text-white shadow-md shadow-blue-500/10 space-y-2">
         <div className="inline-flex items-center space-x-2 px-2.5 py-1 rounded-full bg-white/15 border border-white/20 text-blue-100 text-xs font-semibold">
           <BookOpen className="w-3.5 h-3.5 text-blue-200" />
-          <span>Katalog Layanan Biro Jasa A.R.I.S. & Synergy Consultant</span>
+          <span>A.R.I.S. & Synergy Consultant Service Catalog</span>
         </div>
         <h2 className="text-xl font-bold tracking-tight text-white">
-          Referensi Layanan Pengurusan Paspor & Keimigrasian RI
+          Passport & Immigration Consultancy Service Reference
         </h2>
         <p className="text-xs text-blue-100 max-w-2xl leading-relaxed">
-          Panduan estimasi waktu pengerjaan, persyaratan berkas, dan estimasi biaya penawaran jasa untuk disajikan kepada client/sponsor PT PMA.
+          Guide to estimated processing times, client document requirements, and standard service fee ranges for clients and PMA sponsors.
         </p>
       </div>
 
@@ -48,13 +48,13 @@ export const ServicesCatalog: React.FC<ServicesCatalogProps> = ({ services }) =>
 
               <div className="flex items-center space-x-2 text-xs font-semibold text-blue-700 bg-blue-50 p-2.5 rounded-xl border border-blue-100">
                 <Clock className="w-3.5 h-3.5 text-blue-600" />
-                <span>Estimasi Waktu: {srv.estimatedDays}</span>
+                <span>Est. Processing Time: {srv.estimatedDays}</span>
               </div>
 
               {/* Requirements List */}
               <div className="space-y-1.5 pt-2 border-t border-slate-100">
                 <span className="text-[11px] font-bold text-slate-800 block">
-                  Persyaratan Berkas Client:
+                  Document Requirements:
                 </span>
                 <ul className="space-y-1">
                   {srv.requirements.map((req, idx) => (
@@ -69,7 +69,7 @@ export const ServicesCatalog: React.FC<ServicesCatalogProps> = ({ services }) =>
 
             {srv.estimatedFeeIndonesian && (
               <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                <span className="text-slate-500">Estimasi Fee Penawaran:</span>
+                <span className="text-slate-500">Estimated Fee:</span>
                 <strong className="text-emerald-700 font-bold">{srv.estimatedFeeIndonesian}</strong>
               </div>
             )}

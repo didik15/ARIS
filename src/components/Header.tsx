@@ -55,7 +55,7 @@ export const Header: React.FC<HeaderProps> = ({
               </span>
             </div>
             <p className="text-xs text-slate-500 mt-0.5">
-              Application Reminding Integrated System — Pencatatan & Monitoring Paspor, KITAS & Expat
+              Application Reminding Integrated System — Passport, KITAS & Expat Document Management
             </p>
           </div>
         </div>
@@ -73,7 +73,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold hover:bg-rose-100 transition-colors"
             >
               <ShieldAlert className="w-4 h-4 text-rose-600" />
-              <span>{totalUrgent} Perlu Perhatian! ({expiredCount} Expired)</span>
+              <span>{totalUrgent} Attention Needed! ({expiredCount} Expired)</span>
             </button>
           )}
 
@@ -82,7 +82,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold hover:bg-slate-200 transition-colors"
           >
             <Plus className="w-3.5 h-3.5 text-blue-600" />
-            <span>Tambah Client</span>
+            <span>Add Client</span>
           </button>
 
           <button
@@ -90,7 +90,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-500/20 transition-all"
           >
             <Plus className="w-3.5 h-3.5" />
-            <span>Catat Dokumen Baru</span>
+            <span>Add Document Record</span>
           </button>
         </div>
       </div>
@@ -107,7 +107,7 @@ export const Header: React.FC<HeaderProps> = ({
             }`}
           >
             <BellRing className="w-4 h-4 text-blue-600" />
-            <span>Dashboard & Reminder</span>
+            <span>Dashboard & Reminders</span>
             {totalUrgent > 0 && (
               <span className="ml-1 px-1.5 py-0.2 text-[10px] rounded-full bg-rose-600 text-white font-bold">
                 {totalUrgent}
@@ -124,7 +124,7 @@ export const Header: React.FC<HeaderProps> = ({
             }`}
           >
             <FileText className="w-4 h-4 text-blue-600" />
-            <span>Daftar Paspor & KITAS</span>
+            <span>Passports & KITAS</span>
           </button>
 
           <button
@@ -136,7 +136,7 @@ export const Header: React.FC<HeaderProps> = ({
             }`}
           >
             <Users className="w-4 h-4 text-blue-600" />
-            <span>Data Client & Sponsor</span>
+            <span>Clients & Sponsors</span>
           </button>
 
           <button
@@ -148,7 +148,7 @@ export const Header: React.FC<HeaderProps> = ({
             }`}
           >
             <BookOpen className="w-4 h-4 text-blue-600" />
-            <span>Katalog Layanan Biro</span>
+            <span>Service Catalog</span>
           </button>
 
           <button
@@ -160,7 +160,7 @@ export const Header: React.FC<HeaderProps> = ({
             }`}
           >
             <Bot className="w-4 h-4 text-purple-600" />
-            <span>Asisten AI A.R.I.S.</span>
+            <span>A.R.I.S. AI Assistant</span>
             <span className="px-1.5 py-0.5 text-[10px] font-semibold bg-purple-100 text-purple-800 rounded">
               Gemini AI
             </span>

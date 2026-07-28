@@ -59,12 +59,12 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
   // Stage Stats
   const stageCounts = {
-    'Berkas Belum Diterima': documents.filter(d => d.processStage === 'Berkas Belum Diterima').length,
-    'Pengumpulan Berkas Client': documents.filter(d => d.processStage === 'Pengumpulan Berkas Client').length,
-    'Submit Online / Imigrasi': documents.filter(d => d.processStage === 'Submit Online / Imigrasi').length,
-    'Jadwal Biometrik & Foto': documents.filter(d => d.processStage === 'Jadwal Biometrik & Foto').length,
-    'Stempel Paspor / Verifikasi': documents.filter(d => d.processStage === 'Stempel Paspor / Verifikasi').length,
-    'Selesai & Diserahkan': documents.filter(d => d.processStage === 'Selesai & Diserahkan').length,
+    'Documents Pending': documents.filter(d => d.processStage === 'Documents Pending').length,
+    'Client File Collection': documents.filter(d => d.processStage === 'Client File Collection').length,
+    'Online/Immigration Submission': documents.filter(d => d.processStage === 'Online/Immigration Submission').length,
+    'Biometrics & Photo Appointment': documents.filter(d => d.processStage === 'Biometrics & Photo Appointment').length,
+    'Passport Stamping & Verification': documents.filter(d => d.processStage === 'Passport Stamping & Verification').length,
+    'Completed & Delivered': documents.filter(d => d.processStage === 'Completed & Delivered').length,
   };
 
   // Urgent list (< 30 days or expired)
@@ -96,13 +96,13 @@ export const Dashboard: React.FC<DashboardProps> = ({
           <div className="space-y-1">
             <div className="inline-flex items-center space-x-2 px-2.5 py-1 rounded-full bg-white/15 border border-white/20 text-white text-xs font-semibold">
               <Sparkles className="w-3.5 h-3.5 text-blue-200" />
-              <span>A.R.I.S. Imigrasi & Passport Monitoring</span>
+              <span>A.R.I.S. Passport & KITAS Monitoring</span>
             </div>
             <h2 className="text-xl md:text-2xl font-black tracking-tight text-white">
-              Sistem Pemantauan Masa Berlaku Paspor & KITAS
+              Passport & Visa Expiry Monitoring System
             </h2>
             <p className="text-blue-100 text-xs md:text-sm max-w-2xl leading-relaxed">
-              Memantau dokumen jatuh tempo client secara otomatis. Cegah overstay client dan kirim pesan pengingat WhatsApp secara instan dengan 1-klik.
+              Track client document validity automatically. Prevent overstay issues and send 1-click instant WhatsApp reminders.
             </p>
           </div>
 
@@ -112,7 +112,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
               className="w-full md:w-auto px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-blue-700 font-bold text-xs shadow-md shadow-black/10 flex items-center justify-center space-x-2 transition-all"
             >
               <FileText className="w-4 h-4 text-blue-600" />
-              <span>Input Dokumen Baru</span>
+              <span>Record New Document</span>
             </button>
           </div>
         </div>
@@ -122,7 +122,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
         {/* Total Client */}
         <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between">
-          <p className="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Total Client</p>
+          <p className="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Total Clients</p>
           <div className="mt-1">
             <h3 className="text-2xl font-black text-slate-900">{clients.length}</h3>
             <p className="text-slate-500 text-xs mt-1 font-medium">Sponsor & Personal</p>
@@ -138,10 +138,10 @@ export const Dashboard: React.FC<DashboardProps> = ({
               : 'bg-white border-slate-200'
           }`}
         >
-          <p className="text-rose-600 text-xs font-bold uppercase tracking-wider mb-1">Telah Expired</p>
+          <p className="text-rose-600 text-xs font-bold uppercase tracking-wider mb-1">Expired</p>
           <div className="mt-1">
             <h3 className="text-2xl font-black text-slate-900">{expiredDocs.length}</h3>
-            <p className="text-rose-600 text-xs mt-1 font-semibold">Bahaya Overstay!</p>
+            <p className="text-rose-600 text-xs mt-1 font-semibold">Overstay Risk!</p>
           </div>
         </button>
 
@@ -154,10 +154,10 @@ export const Dashboard: React.FC<DashboardProps> = ({
               : 'bg-white border-slate-200'
           }`}
         >
-          <p className="text-red-600 text-xs font-bold uppercase tracking-wider mb-1">Mendesak (&lt;30 Hr)</p>
+          <p className="text-red-600 text-xs font-bold uppercase tracking-wider mb-1">Urgent (&lt;30 Days)</p>
           <div className="mt-1">
             <h3 className="text-2xl font-black text-slate-900">{criticalDocs.length}</h3>
-            <p className="text-red-600 text-xs mt-1 font-semibold">Segera Proses</p>
+            <p className="text-red-600 text-xs mt-1 font-semibold">Immediate Action</p>
           </div>
         </button>
 
@@ -166,10 +166,10 @@ export const Dashboard: React.FC<DashboardProps> = ({
           onClick={() => onSelectDocumentTabWithFilter && onSelectDocumentTabWithFilter('WARNING')}
           className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs text-left hover:scale-[1.02] transition-all"
         >
-          <p className="text-amber-600 text-xs font-bold uppercase tracking-wider mb-1">Peringatan (31-60)</p>
+          <p className="text-amber-600 text-xs font-bold uppercase tracking-wider mb-1">Warning (31-60 Days)</p>
           <div className="mt-1">
             <h3 className="text-2xl font-black text-slate-900">{warningDocs.length}</h3>
-            <p className="text-amber-600 text-xs mt-1 font-medium">Hubungi Client</p>
+            <p className="text-amber-600 text-xs mt-1 font-medium">Contact Client</p>
           </div>
         </button>
 
@@ -178,10 +178,10 @@ export const Dashboard: React.FC<DashboardProps> = ({
           onClick={() => onSelectDocumentTabWithFilter && onSelectDocumentTabWithFilter('ATTENTION')}
           className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs text-left hover:scale-[1.02] transition-all"
         >
-          <p className="text-blue-600 text-xs font-bold uppercase tracking-wider mb-1">Perhatian (61-90)</p>
+          <p className="text-blue-600 text-xs font-bold uppercase tracking-wider mb-1">Attention (61-90 Days)</p>
           <div className="mt-1">
             <h3 className="text-2xl font-black text-slate-900">{attentionDocs.length}</h3>
-            <p className="text-slate-500 text-xs mt-1 font-medium">Persiapan Berkas</p>
+            <p className="text-slate-500 text-xs mt-1 font-medium">Prepare Files</p>
           </div>
         </button>
 
@@ -190,10 +190,10 @@ export const Dashboard: React.FC<DashboardProps> = ({
           onClick={() => onSelectDocumentTabWithFilter && onSelectDocumentTabWithFilter('SAFE')}
           className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs text-left hover:scale-[1.02] transition-all"
         >
-          <p className="text-emerald-600 text-xs font-bold uppercase tracking-wider mb-1">Aman (&gt;90 Hr)</p>
+          <p className="text-emerald-600 text-xs font-bold uppercase tracking-wider mb-1">Valid (&gt;90 Days)</p>
           <div className="mt-1">
             <h3 className="text-2xl font-black text-slate-900">{safeDocs.length}</h3>
-            <p className="text-emerald-600 text-xs mt-1 font-medium">Aktif Compliant</p>
+            <p className="text-emerald-600 text-xs mt-1 font-medium">Active Compliant</p>
           </div>
         </button>
       </div>
@@ -208,11 +208,11 @@ export const Dashboard: React.FC<DashboardProps> = ({
               <div className="flex items-center space-x-2">
                 <AlertTriangle className="w-5 h-5 text-red-500" />
                 <h3 className="font-bold text-slate-900 text-base">
-                  Daftar Jatuh Tempo Perlu Tindakan ({urgentList.length})
+                  Expiry Action Required ({urgentList.length})
                 </h3>
               </div>
               <p className="text-xs text-slate-500 mt-0.5">
-                Dokumen yang expired atau akan expired dalam waktu dekat (&lt;60 hari). Klik tombol WhatsApp untuk kirim reminder.
+                Documents expired or due soon (&lt;60 days). Click WhatsApp button to send a reminder.
               </p>
             </div>
 
@@ -222,7 +222,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                 <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
                   type="text"
-                  placeholder="Cari client, paspor, PT..."
+                  placeholder="Search client, passport, company..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900"
@@ -234,13 +234,13 @@ export const Dashboard: React.FC<DashboardProps> = ({
                 onChange={(e) => setDocTypeFilter(e.target.value)}
                 className="py-1.5 px-2.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900"
               >
-                <option value="ALL">Semua Dokumen</option>
-                <option value="Paspor WNI">Paspor WNI</option>
-                <option value="Paspor WNA">Paspor WNA</option>
-                <option value="KITAS Investor">KITAS Investor</option>
-                <option value="KITAS Kerja">KITAS Kerja</option>
-                <option value="VOA / ITK">VOA / ITK</option>
-                <option value="KITAP">KITAP</option>
+                <option value="ALL">All Documents</option>
+                <option value="Indonesian Passport">Indonesian Passport</option>
+                <option value="Foreigner Passport">Foreigner Passport</option>
+                <option value="Investor KITAS">Investor KITAS</option>
+                <option value="Working KITAS">Working KITAS</option>
+                <option value="VOA / Tourist ITK">VOA / Tourist ITK</option>
+                <option value="KITAP (Permanent Stay)">KITAP</option>
               </select>
             </div>
           </div>
@@ -250,8 +250,8 @@ export const Dashboard: React.FC<DashboardProps> = ({
             {urgentList.length === 0 ? (
               <div className="p-8 text-center text-slate-500">
                 <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto mb-2 opacity-80" />
-                <p className="font-medium text-sm">Tidak ada dokumen mumpuni dalam kategori krisis/mendesak saat ini.</p>
-                <p className="text-xs text-slate-400 mt-1">Semua dokumen terdistribusi aman atau tidak cocok dengan filter pencarian.</p>
+                <p className="font-medium text-sm">No critical or urgent document expirations found.</p>
+                <p className="text-xs text-slate-400 mt-1">All documents are in valid status or do not match current filter.</p>
               </div>
             ) : (
               urgentList.map((doc) => {
@@ -267,7 +267,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                           {doc.clientName}
                         </span>
                         <span className={`px-2 py-0.5 text-[11px] font-semibold rounded-md border ${cfg.bgClass} ${cfg.colorClass} ${cfg.borderClass}`}>
-                          {doc.daysLeft < 0 ? `EXPIRED (${Math.abs(doc.daysLeft)} Hari Lalu)` : `${doc.daysLeft} Hari Lagi`}
+                          {doc.daysLeft < 0 ? `EXPIRED (${Math.abs(doc.daysLeft)} Days Ago)` : `${doc.daysLeft} Days Left`}
                         </span>
                         <span className="px-2 py-0.5 text-[11px] font-medium bg-slate-100 text-slate-700 rounded-md">
                           {doc.docType}
@@ -290,13 +290,13 @@ export const Dashboard: React.FC<DashboardProps> = ({
                       </div>
 
                       <div className="flex items-center space-x-2 pt-1 text-[11px]">
-                        <span className="text-slate-400">Tahap Layanan:</span>
+                        <span className="text-slate-400">Process Stage:</span>
                         <span className="px-2 py-0.5 bg-blue-50 text-blue-700 font-medium rounded">
                           {doc.processStage}
                         </span>
                         {doc.reminderSentCount > 0 && (
                           <span className="text-emerald-600 flex items-center">
-                            • Reminder terkirim {doc.reminderSentCount}x ({doc.lastReminderDate})
+                            • Reminder sent {doc.reminderSentCount}x ({doc.lastReminderDate})
                           </span>
                         )}
                       </div>
@@ -307,9 +307,9 @@ export const Dashboard: React.FC<DashboardProps> = ({
                       <button
                         onClick={() => onOpenProcessModal(doc)}
                         className="px-2.5 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-100 text-xs font-medium transition-colors"
-                        title="Update Tahap Pengurusan Imigrasi"
+                        title="Update Immigration Process Stage"
                       >
-                        Tahap Proses
+                        Process Stage
                       </button>
 
                       <button
@@ -317,7 +317,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                         className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-xs flex items-center space-x-1.5 transition-all"
                       >
                         <Send className="w-3.5 h-3.5" />
-                        <span>Kirim WA Reminder</span>
+                        <span>Send WA Reminder</span>
                       </button>
                     </div>
                   </div>
@@ -332,7 +332,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
           {/* Status Pipeline Cards */}
           <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-4">
             <h3 className="font-bold text-slate-900 text-base border-b border-slate-100 pb-3">
-              Tahap Pengurusan Berkas Active
+              Active Application Pipeline
             </h3>
 
             <div className="space-y-2.5">
@@ -345,7 +345,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                     {stageName}
                   </span>
                   <span className="px-2.5 py-0.5 text-xs font-bold rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-                    {count} berkas
+                    {count} files
                   </span>
                 </div>
               ))}
@@ -356,22 +356,22 @@ export const Dashboard: React.FC<DashboardProps> = ({
           <div className="bg-blue-50/80 rounded-2xl p-5 border border-blue-200/80 text-slate-800 shadow-xs space-y-3">
             <div className="flex items-center space-x-2 text-blue-700 text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-4 h-4 text-blue-600" />
-              <span>Panduan Aturan Imigrasi RI</span>
+              <span>Immigration Rules & Tips</span>
             </div>
 
             <h4 className="font-bold text-sm text-slate-900">
-              Aturan Penting Paspor & KITAS untuk Expat
+              Key Passport & KITAS Regulations
             </h4>
 
             <ul className="text-xs text-slate-600 space-y-2 list-disc list-inside leading-relaxed">
               <li>
-                <strong className="text-slate-800">Paspor Internasional:</strong> Minimal masa berlaku 6 bulan untuk penerbangan keluar/masuk Indonesia.
+                <strong className="text-slate-800">Passport Validity:</strong> Minimum 6 months validity required for international entry/exit.
               </li>
               <li>
-                <strong className="text-slate-800">Overstay VOA / KITAS:</strong> Denda resmi Imigrasi Rp 1.000.000 / hari jika terlambat diperpanjang.
+                <strong className="text-slate-800">Overstay Fines:</strong> Official immigration penalty is IDR 1,000,000 / day for overstay.
               </li>
               <li>
-                <strong className="text-slate-800">KITAS Investor:</strong> Disarankan mulai diproses 30 - 45 hari sebelum masa berlaku berakhir.
+                <strong className="text-slate-800">Investor KITAS:</strong> Recommended to initiate renewal 30-45 days before expiry.
               </li>
             </ul>
           </div>
@@ -379,29 +379,29 @@ export const Dashboard: React.FC<DashboardProps> = ({
           {/* Reminder Queue Panel (Professional Polish Light Theme) */}
           <div className="bg-white text-slate-800 p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col space-y-4">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="font-bold text-sm text-slate-900">Reminder Queue Log</h3>
+              <h3 className="font-bold text-sm text-slate-900">Reminder Activity Log</h3>
               <span className="text-[10px] bg-blue-50 text-blue-700 border border-blue-200 px-2 py-0.5 rounded font-bold uppercase">
-                Live Active
+                Active System
               </span>
             </div>
             <div className="space-y-3.5">
               <div className="border-l-2 border-blue-600 pl-4 py-1">
-                <p className="text-[10px] text-blue-600 font-bold uppercase">Hari ini, 09:00 WIB</p>
+                <p className="text-[10px] text-blue-600 font-bold uppercase">Today, 09:00 WIB</p>
                 <p className="text-xs text-slate-600 mt-0.5">
-                  Pengingat WA otomatis disiapkan untuk <span className="font-bold text-slate-900 italic">Hans Schmidt</span>.
+                  Automated WA reminder prepared for <span className="font-bold text-slate-900 italic">Hans Schmidt</span>.
                 </p>
               </div>
               <div className="border-l-2 border-slate-300 pl-4 py-1">
-                <p className="text-[10px] text-slate-500 font-bold uppercase">Hari ini, 08:30 WIB</p>
+                <p className="text-[10px] text-slate-500 font-bold uppercase">Today, 08:30 WIB</p>
                 <p className="text-xs text-slate-600 mt-0.5">
-                  System Audit: <span className="font-bold text-slate-800">{urgentList.length} berkas</span> memerlukan penanganan aktif.
+                  System Audit: <span className="font-bold text-slate-800">{urgentList.length} files</span> require active follow-up.
                 </p>
               </div>
             </div>
             <div className="bg-blue-50/80 p-3 rounded-xl border border-blue-200 mt-auto">
               <p className="text-[10px] text-blue-800 font-bold uppercase">A.R.I.S. AUTOMATION ACTIVE</p>
               <p className="text-xs text-slate-600 mt-0.5">
-                Pengingat berkas terintegrasi dengan template WhatsApp resmi Synergy Success Consultant.
+                Integrated reminder messaging templates for Synergy Success Consultant client updates.
               </p>
             </div>
           </div>

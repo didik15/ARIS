@@ -54,7 +54,7 @@ export const ClientModal: React.FC<ClientModalProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !phone) {
-      alert('Nama Client dan Nomor WhatsApp wajib diisi.');
+      alert('Client Name and WhatsApp Number are required.');
       return;
     }
 
@@ -86,10 +86,10 @@ export const ClientModal: React.FC<ClientModalProps> = ({
             </div>
             <div>
               <h3 className="font-bold text-base text-white">
-                {initialClient ? 'Edit Data Client' : 'Tambah Client Baru'}
+                {initialClient ? 'Edit Client Details' : 'Add New Client'}
               </h3>
               <p className="text-xs text-slate-400">
-                Pencatatan data kontak client & sponsor biro jasa keimigrasian
+                Contact and sponsor record management for immigration consultancy
               </p>
             </div>
           </div>
@@ -109,12 +109,12 @@ export const ClientModal: React.FC<ClientModalProps> = ({
             {/* Name */}
             <div className="space-y-1 sm:col-span-2">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Nama Lengkap Client *
+                Full Client Name *
               </label>
               <input
                 type="text"
                 required
-                placeholder="misal: Alexander Volkov"
+                placeholder="e.g. Alexander Volkov"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full p-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100"
@@ -124,27 +124,27 @@ export const ClientModal: React.FC<ClientModalProps> = ({
             {/* Client Type */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Kategori Client *
+                Client Category *
               </label>
               <select
                 value={clientType}
                 onChange={(e: any) => setClientType(e.target.value)}
                 className="w-full p-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100"
               >
-                <option value="Expat">Expat / WNA</option>
-                <option value="Corporate">Corporate / Sponsor PT PMA</option>
-                <option value="Individual">Individual / WNI</option>
+                <option value="Expat">Expat / Foreigner</option>
+                <option value="Corporate">Corporate / Sponsor Company</option>
+                <option value="Individual">Individual / Indonesian</option>
               </select>
             </div>
 
             {/* Nationality */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Kewarganegaraan
+                Nationality
               </label>
               <input
                 type="text"
-                placeholder="misal: Rusia, Australia, Indonesia"
+                placeholder="e.g. Russia, Australia, Indonesia"
                 value={nationality}
                 onChange={(e) => setNationality(e.target.value)}
                 className="w-full p-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100"
@@ -154,11 +154,11 @@ export const ClientModal: React.FC<ClientModalProps> = ({
             {/* Passport Number */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Nomor Paspor / KTP
+                Passport / ID Number
               </label>
               <input
                 type="text"
-                placeholder="misal: N7891230 / X182930"
+                placeholder="e.g. N7891230 / X182930"
                 value={passportNo}
                 onChange={(e) => setPassportNo(e.target.value)}
                 className="w-full p-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100 font-mono"
@@ -168,11 +168,11 @@ export const ClientModal: React.FC<ClientModalProps> = ({
             {/* Company / Sponsor PT */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Nama Perusahaan / Sponsor PT PMA
+                Company / Sponsor Name
               </label>
               <input
                 type="text"
-                placeholder="misal: PT Bali Synergy Investama"
+                placeholder="e.g. PT Bali Synergy Investama"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
                 className="w-full p-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100"
@@ -182,12 +182,12 @@ export const ClientModal: React.FC<ClientModalProps> = ({
             {/* WhatsApp Phone */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Nomor WhatsApp (dengan Kode Negara) *
+                WhatsApp Number (with Country Code) *
               </label>
               <input
                 type="text"
                 required
-                placeholder="misal: 6281234567890"
+                placeholder="e.g. 6281234567890"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className="w-full p-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100 font-semibold text-emerald-600"
@@ -197,7 +197,7 @@ export const ClientModal: React.FC<ClientModalProps> = ({
             {/* Email */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Alamat Email
+                Email Address
               </label>
               <input
                 type="email"
@@ -211,11 +211,11 @@ export const ClientModal: React.FC<ClientModalProps> = ({
             {/* Address */}
             <div className="space-y-1 sm:col-span-2">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Alamat Domisili / Kantor
+                Residential / Office Address
               </label>
               <input
                 type="text"
-                placeholder="misal: Jl. Sunset Road No. 88, Badung, Bali"
+                placeholder="e.g. Jl. Sunset Road No. 88, Badung, Bali"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 className="w-full p-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100"
@@ -225,11 +225,11 @@ export const ClientModal: React.FC<ClientModalProps> = ({
             {/* Notes */}
             <div className="space-y-1 sm:col-span-2">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Catatan Khusus Biro Jasa
+                Agency Notes & Instructions
               </label>
               <textarea
                 rows={3}
-                placeholder="Catatan tambahan, histori perpanjangan, atau instruksi khusus..."
+                placeholder="Additional notes, renewal history, special instructions..."
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 className="w-full p-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100"
@@ -244,14 +244,14 @@ export const ClientModal: React.FC<ClientModalProps> = ({
               onClick={onClose}
               className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             >
-              Batal
+              Cancel
             </button>
 
             <button
               type="submit"
               className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-lg shadow-blue-600/30 transition-all"
             >
-              Simpan Data Client
+              Save Client Data
             </button>
           </div>
         </form>

@@ -94,11 +94,11 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedClientId) {
-      alert('Silakan pilih client terlebih dahulu.');
+      alert('Please select a client first.');
       return;
     }
     if (!docNumber || !expiryDate) {
-      alert('Nomor Dokumen dan Tanggal Expired wajib diisi.');
+      alert('Document Number and Expiry Date are required.');
       return;
     }
 
@@ -117,7 +117,7 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
       country: country || clientObj.nationality || 'Indonesia',
       issueDate: issueDate || new Date().toISOString().split('T')[0],
       expiryDate,
-      sponsorName: sponsorName || clientObj.companyName || 'Pribadi',
+      sponsorName: sponsorName || clientObj.companyName || 'Personal',
       status,
       processStage,
       notes,
@@ -138,10 +138,10 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
             </div>
             <div>
               <h3 className="font-bold text-base text-white">
-                {initialDocument ? 'Edit Dokumen Keimigrasian' : 'Catat Dokumen Keimigrasian Baru'}
+                {initialDocument ? 'Edit Immigration Document' : 'Record New Immigration Document'}
               </h3>
               <p className="text-xs text-slate-400">
-                A.R.I.S. System — Pencatatan & Sistem Pengingat Jatuh Tempo Paspor/KITAS
+                A.R.I.S. System — Expiry & Process Stage Tracking
               </p>
             </div>
           </div>
@@ -160,7 +160,7 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
           {/* Select Client */}
           <div className="space-y-1">
             <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-              Pilih Client *
+              Select Client *
             </label>
             <select
               required
@@ -168,7 +168,7 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
               onChange={(e) => handleClientSelect(e.target.value)}
               className="w-full p-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100 font-semibold"
             >
-              <option value="">-- Pilih Client Terdaftar --</option>
+              <option value="">-- Select Registered Client --</option>
               {clients.map(c => (
                 <option key={c.id} value={c.id}>
                   {c.name} ({c.nationality} — {c.companyName || 'Personal'})
@@ -181,36 +181,36 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
             {/* Doc Type */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Jenis Dokumen Keimigrasian *
+                Immigration Document Type *
               </label>
               <select
                 value={docType}
                 onChange={(e: any) => setDocType(e.target.value)}
                 className="w-full p-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100 font-semibold"
               >
-                <option value="Paspor WNI">Paspor WNI</option>
-                <option value="Paspor WNA">Paspor WNA</option>
-                <option value="KITAS Investor">KITAS Investor (PMA)</option>
-                <option value="KITAS Kerja">KITAS Kerja (TKA)</option>
-                <option value="KITAS Keluarga">KITAS Keluarga / Ikut Suami-Istri</option>
-                <option value="KITAP">KITAP (Izin Tinggal Tetap 5 Thn)</option>
-                <option value="VOA / ITK">VOA / ITK (Visa On Arrival)</option>
-                <option value="RPTKA / IMTA">RPTKA / IMTA (Kemnaker)</option>
-                <option value="EPO / ERP">EPO / ERP (Exit Permit)</option>
-                <option value="SKTT / STM">SKTT / STM Kepolisian</option>
-                <option value="Lainnya">Lainnya</option>
+                <option value="Indonesian Passport">Indonesian Passport</option>
+                <option value="Foreigner Passport">Foreigner Passport</option>
+                <option value="Investor KITAS">Investor KITAS (PMA)</option>
+                <option value="Working KITAS">Working KITAS (Expat)</option>
+                <option value="Family KITAS">Family KITAS (Spouse/Dependent)</option>
+                <option value="KITAP (Permanent Stay)">KITAP (5-Year Permanent Stay)</option>
+                <option value="VOA / Tourist ITK">VOA / Tourist ITK (Visa On Arrival)</option>
+                <option value="Work Permit (RPTKA/IMTA)">Work Permit (RPTKA/IMTA)</option>
+                <option value="EPO / ERP (Exit Permit)">EPO / ERP (Exit Permit)</option>
+                <option value="Residence Cert (SKTT/STM)">Residence Cert (SKTT/STM)</option>
+                <option value="Other">Other</option>
               </select>
             </div>
 
             {/* Document Number */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Nomor Dokumen *
+                Document Number *
               </label>
               <input
                 type="text"
                 required
-                placeholder="misal: 2C12EF8901-M / X1829402"
+                placeholder="e.g. 2C12EF8901-M / X1829402"
                 value={docNumber}
                 onChange={(e) => setDocNumber(e.target.value)}
                 className="w-full p-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100 font-mono font-bold"
@@ -220,11 +220,11 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
             {/* Country */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Negara / Kebangsaan Dokumen
+                Document Country / Nationality
               </label>
               <input
                 type="text"
-                placeholder="misal: Indonesia, Rusia, Australia"
+                placeholder="e.g. Indonesia, Russia, Australia"
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
                 className="w-full p-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100"
@@ -234,11 +234,11 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
             {/* Sponsor Name */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Sponsor / PT Penanggung Jawab
+                Sponsor / Responsible Entity
               </label>
               <input
                 type="text"
-                placeholder="misal: PT Bali Synergy Investama"
+                placeholder="e.g. PT Bali Synergy Investama"
                 value={sponsorName}
                 onChange={(e) => setSponsorName(e.target.value)}
                 className="w-full p-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100"
@@ -248,7 +248,7 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
             {/* Issue Date */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Tanggal Terbit (Issue Date)
+                Issue Date
               </label>
               <input
                 type="date"
@@ -261,7 +261,7 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
             {/* Expiry Date */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Tanggal Expired (Masa Berlaku) *
+                Expiry Date *
               </label>
               <input
                 type="date"
@@ -275,7 +275,7 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
             {/* Date Presets Quick Bar */}
             <div className="space-y-1 sm:col-span-2">
               <span className="text-[11px] font-semibold text-slate-500 block">
-                Bantuan Cepat Hitung Tanggal Expired:
+                Quick Expiry Date Calculator:
               </span>
               <div className="flex flex-wrap gap-1.5">
                 <button
@@ -283,35 +283,35 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
                   onClick={() => addDaysToExpiry(30)}
                   className="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-[11px] font-medium text-slate-700 dark:text-slate-300"
                 >
-                  +30 Hari (VOA)
+                  +30 Days (VOA)
                 </button>
                 <button
                   type="button"
                   onClick={() => addYearsToExpiry(1)}
                   className="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-[11px] font-medium text-slate-700 dark:text-slate-300"
                 >
-                  +1 Tahun (KITAS Work)
+                  +1 Year (KITAS Work)
                 </button>
                 <button
                   type="button"
                   onClick={() => addYearsToExpiry(2)}
                   className="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-[11px] font-medium text-slate-700 dark:text-slate-300"
                 >
-                  +2 Tahun (KITAS Investor)
+                  +2 Years (KITAS Investor)
                 </button>
                 <button
                   type="button"
                   onClick={() => addYearsToExpiry(5)}
                   className="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-[11px] font-medium text-slate-700 dark:text-slate-300"
                 >
-                  +5 Tahun (KITAP)
+                  +5 Years (KITAP)
                 </button>
                 <button
                   type="button"
                   onClick={() => addYearsToExpiry(10)}
                   className="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-[11px] font-medium text-slate-700 dark:text-slate-300"
                 >
-                  +10 Tahun (Paspor WNI)
+                  +10 Years (Indonesian Passport)
                 </button>
               </div>
             </div>
@@ -319,30 +319,30 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
             {/* Process Stage */}
             <div className="space-y-1 sm:col-span-2">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Tahap Pengurusan Saat Ini
+                Current Application Process Stage
               </label>
               <select
                 value={processStage}
                 onChange={(e: any) => setProcessStage(e.target.value)}
                 className="w-full p-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100 font-semibold"
               >
-                <option value="Berkas Belum Diterima">1. Berkas Belum Diterima</option>
-                <option value="Pengumpulan Berkas Client">2. Pengumpulan Berkas Client</option>
-                <option value="Submit Online / Imigrasi">3. Submit Online / Imigrasi</option>
-                <option value="Jadwal Biometrik & Foto">4. Jadwal Biometrik & Foto</option>
-                <option value="Stempel Paspor / Verifikasi">5. Stempel Paspor / Verifikasi</option>
-                <option value="Selesai & Diserahkan">6. Selesai & Diserahkan</option>
+                <option value="Documents Pending">1. Documents Pending</option>
+                <option value="Client File Collection">2. Client File Collection</option>
+                <option value="Online/Immigration Submission">3. Online/Immigration Submission</option>
+                <option value="Biometrics & Photo Appointment">4. Biometrics & Photo Appointment</option>
+                <option value="Passport Stamping & Verification">5. Passport Stamping & Verification</option>
+                <option value="Completed & Delivered">6. Completed & Delivered</option>
               </select>
             </div>
 
             {/* Notes */}
             <div className="space-y-1 sm:col-span-2">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Catatan Khusus Dokumen Ini
+                Specific Document Notes
               </label>
               <textarea
                 rows={2}
-                placeholder="misal: Menunggu LKPM PT PMA, atau tanggal foto biometrik di Imigrasi Denpasar..."
+                placeholder="e.g. Awaiting LKPM for PMA, or biometrics appointment date at Immigration Office..."
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 className="w-full p-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100"
@@ -357,14 +357,14 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
               onClick={onClose}
               className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             >
-              Batal
+              Cancel
             </button>
 
             <button
               type="submit"
               className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-lg shadow-blue-600/30 transition-all"
             >
-              Simpan Catatan Dokumen
+              Save Document Record
             </button>
           </div>
         </form>

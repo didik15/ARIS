@@ -9,12 +9,12 @@ interface ProcessModalProps {
 }
 
 const ALL_STAGES: ProcessStage[] = [
-  'Berkas Belum Diterima',
-  'Pengumpulan Berkas Client',
-  'Submit Online / Imigrasi',
-  'Jadwal Biometrik & Foto',
-  'Stempel Paspor / Verifikasi',
-  'Selesai & Diserahkan',
+  'Documents Pending',
+  'Client File Collection',
+  'Online/Immigration Submission',
+  'Biometrics & Photo Appointment',
+  'Passport Stamping & Verification',
+  'Completed & Delivered',
 ];
 
 export const ProcessModal: React.FC<ProcessModalProps> = ({
@@ -51,7 +51,7 @@ export const ProcessModal: React.FC<ProcessModalProps> = ({
             </div>
             <div>
               <h3 className="font-bold text-base text-white">
-                Tahap Pengurusan Imigrasi
+                Immigration Application Process Stage
               </h3>
               <p className="text-xs text-slate-400">
                 {document.clientName} — {document.docType} ({document.docNumber})
@@ -70,7 +70,7 @@ export const ProcessModal: React.FC<ProcessModalProps> = ({
         {/* Stages Timeline */}
         <div className="p-6 space-y-5">
           <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block">
-            Pilih Status Tahapan Pengerjaan Saat Ini:
+            Select Current Process Stage:
           </label>
 
           <div className="space-y-2">
@@ -103,13 +103,13 @@ export const ProcessModal: React.FC<ProcessModalProps> = ({
 
           <div className="space-y-1">
             <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block">
-              Catatan Progres Tahapan:
+              Process Progress Notes:
             </label>
             <textarea
               rows={3}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="Catatan pengerjaan imigrasi..."
+              placeholder="Notes on current application stage..."
               className="w-full p-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-slate-100"
             />
           </div>
@@ -121,14 +121,14 @@ export const ProcessModal: React.FC<ProcessModalProps> = ({
             onClick={onClose}
             className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           >
-            Batal
+            Cancel
           </button>
 
           <button
             onClick={handleSave}
             className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-lg shadow-blue-600/30 transition-all"
           >
-            Perbarui Tahapan
+            Update Stage
           </button>
         </div>
 

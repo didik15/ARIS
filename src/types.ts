@@ -15,28 +15,28 @@ export interface Client {
 }
 
 export type DocType = 
-  | 'Paspor WNI'
-  | 'Paspor WNA'
-  | 'KITAS Investor'
-  | 'KITAS Kerja'
-  | 'KITAS Keluarga'
-  | 'KITAP'
-  | 'VOA / ITK'
-  | 'RPTKA / IMTA'
-  | 'EPO / ERP'
-  | 'SKTT / STM'
-  | 'Izin Usaha / NIB'
-  | 'Lainnya';
+  | 'Indonesian Passport'
+  | 'Foreigner Passport'
+  | 'Investor KITAS'
+  | 'Working KITAS'
+  | 'Family KITAS'
+  | 'KITAP (Permanent Stay)'
+  | 'VOA / Tourist ITK'
+  | 'Work Permit (RPTKA/IMTA)'
+  | 'EPO / ERP (Exit Permit)'
+  | 'Residence Cert (SKTT/STM)'
+  | 'Business License / NIB'
+  | 'Other';
 
 export type DocStatus = 'Active' | 'Renewal_Due' | 'In_Progress' | 'Completed' | 'Expired';
 
 export type ProcessStage = 
-  | 'Berkas Belum Diterima'
-  | 'Pengumpulan Berkas Client'
-  | 'Submit Online / Imigrasi'
-  | 'Jadwal Biometrik & Foto'
-  | 'Stempel Paspor / Verifikasi'
-  | 'Selesai & Diserahkan';
+  | 'Documents Pending'
+  | 'Client File Collection'
+  | 'Online/Immigration Submission'
+  | 'Biometrics & Photo Appointment'
+  | 'Passport Stamping & Verification'
+  | 'Completed & Delivered';
 
 export interface ImmigrationDocument {
   id: string;
@@ -72,7 +72,7 @@ export interface ExpiryAlert {
 export interface AgencyService {
   id: string;
   name: string;
-  category: 'Paspor' | 'Izin Tinggal (KITAS/KITAP)' | 'Visa & VOA' | 'Legalitas Perusahaan';
+  category: 'Passports' | 'Residence Permits (KITAS/KITAP)' | 'Visas & VOA' | 'Corporate Legality';
   estimatedDays: string;
   requirements: string[];
   description: string;
@@ -82,6 +82,6 @@ export interface AgencyService {
 export interface ReminderTemplate {
   id: string;
   title: string;
-  language: 'Indonesia' | 'English' | 'Bilingual';
+  language: 'English' | 'Bilingual' | 'Indonesian';
   content: string;
 }

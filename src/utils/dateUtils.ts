@@ -37,48 +37,48 @@ export function getExpiryAlertConfig(alertLevel: ExpiryAlertLevel): ExpiryAlert 
     case 'EXPIRED':
       return {
         level: 'EXPIRED',
-        label: 'Telah Expired (Risiko Overstay)',
+        label: 'Expired (Overstay Risk)',
         colorClass: 'text-white font-black',
         bgClass: 'bg-rose-600',
         borderClass: 'border-rose-700 shadow-2xs',
-        description: 'Dokumen telah melewati masa berlaku! Segera tindak lanjuti.',
+        description: 'Document has expired! Immediate action required.',
       };
     case 'CRITICAL':
       return {
         level: 'CRITICAL',
-        label: 'Mendesak (< 30 Hari)',
+        label: 'Urgent (< 30 Days)',
         colorClass: 'text-rose-950 font-bold',
         bgClass: 'bg-rose-100',
         borderClass: 'border-rose-300',
-        description: 'Masa berlaku kurang dari 30 hari. Perlu proses perpanjangan instan.',
+        description: 'Expires in less than 30 days. Express renewal needed.',
       };
     case 'WARNING':
       return {
         level: 'WARNING',
-        label: 'Peringatan (31-60 Hari)',
+        label: 'Warning (31-60 Days)',
         colorClass: 'text-amber-950 font-bold',
         bgClass: 'bg-amber-100',
         borderClass: 'border-amber-300',
-        description: 'Saatnya menghubungi client untuk penawaran perpanjangan.',
+        description: 'Time to contact client with renewal proposal.',
       };
     case 'ATTENTION':
       return {
         level: 'ATTENTION',
-        label: 'Perhatian (61-90 Hari)',
+        label: 'Attention (61-90 Days)',
         colorClass: 'text-blue-950 font-bold',
         bgClass: 'bg-blue-100',
         borderClass: 'border-blue-300',
-        description: 'Pengingat awal untuk persiapan berkas sponsor.',
+        description: 'Early reminder to prepare sponsor documentation.',
       };
     case 'SAFE':
     default:
       return {
         level: 'SAFE',
-        label: 'Aman (> 90 Hari)',
+        label: 'Valid (> 90 Days)',
         colorClass: 'text-emerald-950 font-bold',
         bgClass: 'bg-emerald-100',
         borderClass: 'border-emerald-300',
-        description: 'Masa berlaku masih panjang.',
+        description: 'Sufficient validity remaining.',
       };
   }
 }
@@ -87,9 +87,9 @@ export function formatIndonesianDate(dateStr: string): string {
   if (!dateStr) return '-';
   try {
     const d = new Date(dateStr);
-    return new Intl.DateTimeFormat('id-ID', {
+    return new Intl.DateTimeFormat('en-US', {
       day: 'numeric',
-      month: 'long',
+      month: 'short',
       year: 'numeric',
     }).format(d);
   } catch {
