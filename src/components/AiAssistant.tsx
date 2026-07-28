@@ -10,8 +10,8 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({ documents }) => {
   const [messages, setMessages] = useState<Array<{ sender: 'user' | 'ai'; text: string; time: string }>>([
     {
       sender: 'ai',
-      text: 'Halo! Saya adalah **Asisten AI A.R.I.S.** (Konsultan Biro Jasa Keimigrasian).\n\nSaya dapat membantu Anda membuat draf pesan pengingat khusus, menjawab regulasi imigrasi Indonesia (Paspor, KITAS, KITAP, VOA, Overstay, PMA), atau menyusun surat resmi untuk Sponsor Perusahaan. Ada yang bisa saya bantu hari ini?',
-      time: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }),
+      text: 'Hello! I am the **A.R.I.S. AI Assistant** (Immigration Consultancy Assistant).\n\nI can help you draft customized reminder messages, answer questions regarding Indonesian immigration regulations (Passports, KITAS, KITAP, VOA, Overstay, PMA rules), or compose formal sponsor letters for corporate clients. How can I assist you today?',
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
     },
   ]);
   const [inputMessage, setInputMessage] = useState('');
@@ -27,7 +27,7 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({ documents }) => {
     const textToSend = customPrompt || inputMessage;
     if (!textToSend.trim() || isLoading) return;
 
-    const userTime = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+    const userTime = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     const newMsgList = [...messages, { sender: 'user' as const, text: textToSend, time: userTime }];
     setMessages(newMsgList);
     setInputMessage('');
@@ -39,25 +39,25 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({ documents }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: textToSend,
-          context: `Daftar Dokumen Client Biro Jasa:\n${contextText}`,
+          context: `Client Document List:\n${contextText}`,
         }),
       });
 
       const data = await res.json();
-      const aiTime = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+      const aiTime = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
 
       if (!res.ok) {
-        throw new Error(data.error || 'Gagal memproses AI');
+        throw new Error(data.error || 'Failed to process AI response');
       }
 
       setMessages([...newMsgList, { sender: 'ai', text: data.reply, time: aiTime }]);
     } catch (err: any) {
-      const aiTime = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+      const aiTime = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
       setMessages([
         ...newMsgList,
         {
           sender: 'ai',
-          text: `⚠️ Maaf, terjadi kesalahan: ${err.message || 'Gagal terhubung dengan server Gemini AI'}. Mohon pastikan API Key sudah terkonfigurasi.`,
+          text: `⚠️ Error: ${err.message || 'Failed to connect to Gemini AI server'}. Please ensure GEMINI_API_KEY is configured.`,
           time: aiTime,
         },
       ]);
@@ -73,10 +73,10 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({ documents }) => {
   };
 
   const quickPrompts = [
-    'Aturan perpanjangan KITAS Investor vs KITAS Kerja TKA',
-    'Draf Email resmi pemberitahuan jatuh tempo ke HR PT PMA',
-    'Syarat perpanjangan Paspor WNI percepatan kilat',
-    'Konsekuensi & perhitungan denda Overstay VOA / ITK',
+    'Investor KITAS vs Working KITAS renewal rules',
+    'Draft formal expiry notice email to PMA Company HR',
+    'Indonesian passport express renewal requirements',
+    'Overstay fines & calculation for VOA / Tourist visa',
   ];
 
   return (
@@ -86,13 +86,13 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({ documents }) => {
         <div className="space-y-1">
           <div className="inline-flex items-center space-x-2 px-2.5 py-1 rounded-full bg-white/15 border border-white/20 text-purple-100 text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5 text-purple-200" />
-            <span>Asisten AI Biro Jasa Keimigrasian</span>
+            <span>Immigration Agency AI Assistant</span>
           </div>
           <h2 className="text-xl font-bold tracking-tight text-white">
-            Asisten AI A.R.I.S. (Gemini 2.5 Flash)
+            A.R.I.S. AI Assistant (Gemini 2.5 Flash)
           </h2>
           <p className="text-xs text-purple-100 max-w-2xl leading-relaxed">
-            Tanyakan regulasi imigrasi terbaru, buat draf penawaran perpanjangan dalam berbagai bahasa (Jepang, Inggris, Mandarin), atau susun surat resmi sponsor PT PMA.
+            Ask about Indonesian immigration rules, generate renewal proposal drafts in multiple languages (English, Japanese, Mandarin), or compose formal sponsor letters for PMA companies.
           </p>
         </div>
       </div>
@@ -133,7 +133,7 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({ documents }) => {
                     <button
                       onClick={() => handleCopy(msg.text, idx)}
                       className="absolute top-2 right-2 p-1 rounded bg-slate-200 hover:bg-slate-300 text-slate-600 opacity-0 group-hover:opacity-100 transition-opacity"
-                      title="Salin Teks"
+                      title="Copy Text"
                     >
                       {copiedIdx === idx ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
                     </button>
@@ -154,14 +154,14 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({ documents }) => {
           {isLoading && (
             <div className="flex items-center space-x-2 text-slate-400 text-xs p-2">
               <RefreshCw className="w-4 h-4 animate-spin text-purple-500" />
-              <span>Asisten AI A.R.I.S. sedang berpikir & menyusun tanggapan...</span>
+              <span>A.R.I.S. AI Assistant is thinking and composing response...</span>
             </div>
           )}
         </div>
 
         {/* Quick Prompts Bar */}
         <div className="p-3 bg-slate-50 border-t border-slate-200 flex items-center gap-2 overflow-x-auto scrollbar-none">
-          <span className="text-[11px] font-bold text-slate-500 shrink-0">Contoh Pertanyaan:</span>
+          <span className="text-[11px] font-bold text-slate-500 shrink-0">Sample Prompts:</span>
           {quickPrompts.map((qp, idx) => (
             <button
               key={idx}
@@ -185,7 +185,7 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({ documents }) => {
           >
             <input
               type="text"
-              placeholder="Tanyakan regulasi imigrasi, perpanjangan paspor/KITAS, atau draf surat sponsor..."
+              placeholder="Ask about immigration rules, passport/KITAS renewal, or sponsor letters..."
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
               disabled={isLoading}

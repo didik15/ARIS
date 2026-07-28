@@ -115,14 +115,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <>
       {/* Top Bar for Mobile Screen */}
       <div className="lg:hidden bg-white border-b border-slate-200 p-4 sticky top-0 z-40 flex items-center justify-between shadow-2xs">
-        <div className="flex items-center space-x-3">
-          <div className={`w-9 h-9 ${logoBg} rounded-xl flex items-center justify-center font-bold text-white text-lg shadow-sm shrink-0`}>
-            A
-          </div>
-          <div>
+        <div>
+          <div className="flex items-center space-x-1.5">
             <h1 className="font-bold text-base text-slate-900 leading-none">A.R.I.S.</h1>
-            <p className="text-[11px] text-slate-500 mt-0.5">Synergy Success Consultant</p>
+            <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-700 font-bold border border-slate-200">
+              v1.0
+            </span>
           </div>
+          <p className="text-[11px] text-slate-500 mt-0.5">Synergy Success Consultant</p>
         </div>
 
         <div className="flex items-center space-x-2">
@@ -166,23 +166,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div className="flex flex-col h-full overflow-y-auto p-5 space-y-6 scrollbar-none">
           {/* Header Branding */}
           <div className="space-y-3 pb-4 border-b border-slate-100">
-            <div className="flex items-center space-x-3">
-              <div className={`w-10 h-10 ${logoBg} rounded-xl flex items-center justify-center font-bold text-white text-xl shadow-md shrink-0 transition-colors`}>
-                A
+            <div>
+              <div className="flex items-center space-x-2">
+                <h1 className="font-extrabold text-xl text-slate-900 tracking-tight">
+                  A.R.I.S.
+                </h1>
+                <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-bold border border-slate-200">
+                  v1.0
+                </span>
               </div>
-              <div>
-                <div className="flex items-center space-x-1.5">
-                  <h1 className="font-extrabold text-lg text-slate-900 tracking-tight">
-                    A.R.I.S.
-                  </h1>
-                  <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-700 font-bold border border-slate-200">
-                    v2.5
-                  </span>
-                </div>
-                <p className="text-xs font-medium text-slate-500">
-                  Application Reminding Integrated System
-                </p>
-              </div>
+              <p className="text-xs font-medium text-slate-500 mt-0.5">
+                Application Reminding Integrated System
+              </p>
             </div>
 
             <div className="bg-slate-50 rounded-xl p-2.5 border border-slate-100 text-[11px] text-slate-600 flex items-center space-x-2">

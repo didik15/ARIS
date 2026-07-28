@@ -37,27 +37,22 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="bg-white text-slate-800 border-b border-slate-200 sticky top-0 z-40 shadow-xs">
       {/* Top Banner Branding */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="flex items-center space-x-3.5">
-          <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-bold text-white text-xl shadow-md shadow-blue-500/20 shrink-0">
-            A
+        <div>
+          <div className="flex items-center space-x-2">
+            <h1 className="font-bold text-lg md:text-xl tracking-tight text-slate-900">
+              A.R.I.S.
+            </h1>
+            <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200 font-bold">
+              v1.0
+            </span>
+            <span className="hidden sm:inline-flex items-center text-xs text-slate-500 border-l border-slate-200 pl-2">
+              <Building2 className="w-3.5 h-3.5 mr-1 text-slate-400" />
+              Synergy Success Consultant
+            </span>
           </div>
-          <div>
-            <div className="flex items-center space-x-2">
-              <h1 className="font-bold text-lg md:text-xl tracking-tight text-slate-900">
-                A.R.I.S.
-              </h1>
-              <span className="text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200 font-bold">
-                Integrated System
-              </span>
-              <span className="hidden sm:inline-flex items-center text-xs text-slate-500 border-l border-slate-200 pl-2">
-                <Building2 className="w-3.5 h-3.5 mr-1 text-slate-400" />
-                Synergy Success Consultant
-              </span>
-            </div>
-            <p className="text-xs text-slate-500 mt-0.5">
-              Application Reminding Integrated System — Passport, KITAS & Expat Document Management
-            </p>
-          </div>
+          <p className="text-xs text-slate-500 mt-0.5">
+            Application Reminding Integrated System — Passport, KITAS & Expat Document Management
+          </p>
         </div>
 
         {/* System Status & Admin Profile & Primary Actions */}
