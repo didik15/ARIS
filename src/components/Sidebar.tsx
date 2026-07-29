@@ -116,6 +116,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Top Bar for Mobile Screen */}
       <div className="lg:hidden bg-white border-b border-slate-200 p-4 sticky top-0 z-40 flex items-center justify-between shadow-2xs">
         <div>
+          <img src="/logo_aris_trans.png" alt="A.R.I.S. Logo" className="h-12 w-auto mb-1 object-contain" />
           <div className="flex items-center space-x-1.5">
             <h1 className="font-bold text-base text-slate-900 leading-none">A.R.I.S.</h1>
             <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-700 font-bold border border-slate-200">
@@ -167,6 +168,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* Header Branding */}
           <div className="space-y-3 pb-4 border-b border-slate-100">
             <div>
+              <img src="/logo_aris_trans.png" alt="A.R.I.S. Logo" className="h-16 md:h-20 w-auto mb-2 object-contain" />
               <div className="flex items-center space-x-2">
                 <h1 className="font-extrabold text-xl text-slate-900 tracking-tight">
                   A.R.I.S.

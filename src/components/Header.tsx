@@ -36,6 +36,7 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Top Banner Branding */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
+          <img src="/logo_aris_trans.png" alt="A.R.I.S. Logo" className="h-14 md:h-16 w-auto mb-1.5 object-contain" />
           <div className="flex items-center space-x-2">
             <h1 className="font-bold text-lg md:text-xl tracking-tight text-slate-900">
               A.R.I.S.
